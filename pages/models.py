@@ -5,6 +5,7 @@ class Page(models.Model):
     PAGE_TYPES = (
         ('home','hompage'),
         ('me','about me'),
+        ('contact','contact'),
     )
 
     id_name = models.CharField(max_length=128)
