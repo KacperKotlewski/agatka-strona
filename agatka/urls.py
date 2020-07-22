@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
     path('about-me', include('about_me.urls')),
+    path('contact', include('contact.urls')),
 ]
 
 from django.conf import settings

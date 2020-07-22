@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from agatka.useful import *
 
-# Create your views here.
+def Contact(request):
+    ctx = set_navname("contact", base_context(request))
+    # messages.info(request, 'Your password has been changed successfully!')
+    return render(request, "contact.html", ctx)
