@@ -1,0 +1,109 @@
+@import '../_settings';
+
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    border: none;
+    padding: 0px;
+    overflow: hidden;
+    overflow-y: visible;
+    font-family: 'Exo 2', sans-serif;
+    scrollbar-width: none;
+}
+.semiTransparentMenu{
+    background-color: rgba($menuBgColor, 0.5);
+}
+.notTransparentMenu{
+    background-color: rgba($menuBgColor, 1);
+}
+#container{
+  overflow: hidden;
+}
+
+#main{
+    position: relative;
+    overflow: hidden;
+    width: $width;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(50vh, auto) (50vh-$menuSize);
+    @media (max-width : 750px), (orientation: portrait){
+      grid-template-rows: minmax(50vh, auto) (50vh - ($portraitSize));
+    }
+
+    footer{
+        grid-row: 2/3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3em;
+    }
+}
+
+.picFill{
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+body::-webkit-scrollbar {
+  width: $scrollSize;
+  scrollbar-width: $scrollSize;
+  padding-right: $scrollSize;
+}
+body::-webkit-scrollbar-track {
+  //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+body::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline:none;
+}
+
+
+
+
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+  }
+  
+  /* The slider itself */
+  .sliderRange {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    
+    height: 1em; /* Specified height */ /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  
+  /* Mouse-over effects */
+  .sliderRange:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .sliderRange::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    
+    height: 1em; /* Slider handle height */
+    background: rgba(#777, 0.7); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .sliderRange::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    
+    height: 1em; /* Slider handle height */
+    background: rgba(#777, 0.7); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }

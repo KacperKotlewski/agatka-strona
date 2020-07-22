@@ -1,0 +1,100 @@
+@import '../_settings';
+
+div.image {
+    position: relative;
+    width: 100%;
+    &.portrait:before{
+        content: "";
+        display: block;
+        padding-top: 150%;
+    }
+    &.landscape:before{
+        content: "";
+        display: block;
+        padding-top: 75%;
+    }
+    &.square:before{
+        content: "";
+        display: block;
+        padding-top: 100%;
+    }
+    &.autofill{
+        height: 100%;
+    }
+    &.contain .imgCanvas .imgContain .picFill{
+        background-size: contain;
+    }
+    &.zoom1x5 .imgCanvas .imgContain .picFill{
+        transform: scale(1.5);
+    }
+    &.hoverZoom1x5:hover .imgCanvas .imgContain .picFill{
+        transform: scale(1.5);
+    }
+    &.hoverZoom1x25:hover .imgCanvas .imgContain .picFill{
+        transform: scale(1.25);
+    }
+    &.hoverGreyout:hover .imgCanvas .imgContain .overlay{
+        background-color: rgba($color: #333, $alpha: 0.5);
+    }
+    &.hoverblur:hover .imgCanvas .imgContain .picFill {
+        filter: blur(8px);
+    }
+
+    .imgCanvas{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        .imgContain{
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            top:0px;
+            bottom:0px;
+            left:0px;
+            right:0px;
+            float: left;
+            display: inline-block;
+        }
+
+        .imgContain .picFill{
+            height: 100%;
+            width: 100%;
+            transition: all .5s;
+            background-size: cover;
+        }
+
+        .imgContain .picFill:before{
+            content: "";
+            display: none;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .imgContain .overlay{
+            transition: all .5s;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 7;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            
+            a, div#title {
+                display:inline-block;
+                height: 100%;
+                width: 100%;
+                color: $darktextColor;
+                text-align: center;
+                text-decoration: none;
+            }
+        }
+    }
+}

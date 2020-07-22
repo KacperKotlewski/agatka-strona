@@ -1,0 +1,282 @@
+html {
+  width: 100%;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+html.gridList, body.gridList {
+  height: 100vh;
+  width: 100vw;
+}
+
+#popoutWindow {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
+#gridList {
+  display: -ms-grid;
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+}
+
+#gridList form#menu {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  background-color: #ccc;
+}
+
+#gridList form#menu h2 {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#gridList form#menu .formBlock {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3/4;
+}
+
+#gridList ul {
+  padding: 0px;
+}
+
+#gridList li {
+  list-style-type: none;
+}
+
+#gridList .ToDelete {
+  border: 4px solid red;
+}
+
+#gridList #itemList {
+  height: 100%;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  overflow-y: auto;
+  padding: 0px 40px 0px 20px;
+}
+
+#gridList #itemList .itemInList {
+  margin: 0px 0px 5px 20px;
+}
+
+#gridList #itemList .itemInList .itemBarInList {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#gridList #itemList .itemInList .itemBarInList .expand {
+  cursor: pointer;
+}
+
+#gridList #itemList .itemInList .itemBarInList h2, #gridList #itemList .itemInList .itemBarInList h3, #gridList #itemList .itemInList .itemBarInList h4, #gridList #itemList .itemInList .itemBarInList h5 {
+  margin: 0;
+}
+
+#gridList #itemList .itemInList .itemBarInList:hover {
+  background-color: #ccc;
+}
+
+#gridList #itemList .itemInList p {
+  margin: 0px;
+}
+
+#gridList #itemList .itemInList .categoryInList {
+  background-color: #fff;
+}
+
+#gridList #itemList .itemInList .folderInList {
+  background-color: #eee;
+}
+
+#gridList #itemList .itemInList .photoInList {
+  background-color: #ddd;
+}
+
+#gridList #itemList .itemInList li.description {
+  margin: 0px 0px 0px 20px;
+}
+
+#container, #popoutWindow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#container form, #container #form, #popoutWindow form, #popoutWindow #form {
+  background-color: #fff;
+  display: -ms-grid;
+  display: grid;
+  width: 500px;
+}
+
+#container form input, #container form textarea, #container #form input, #container #form textarea, #popoutWindow form input, #popoutWindow form textarea, #popoutWindow #form input, #popoutWindow #form textarea {
+  padding: 5px;
+  margin: 5px;
+}
+
+.formGrid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.formBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.formList {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.formLabel {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 1fr;
+      grid-template-columns: auto 1fr;
+}
+
+.formLabel label {
+  margin: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  text-align: center;
+}
+
+.checkbox {
+  width: 30px;
+  height: 30px;
+}
+
+.btn {
+  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+          box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #f9f9f9), to(#e9e9e9));
+  background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+  background-color: #f9f9f9;
+  border: 2px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #666666;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 5px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  margin: 5px;
+}
+
+.btn:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #e9e9e9), to(#f9f9f9));
+  background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+  background-color: #e9e9e9;
+}
+
+.btn:active {
+  position: relative;
+  top: 1px;
+}
+/*# sourceMappingURL=userAndAdmin.css.map */

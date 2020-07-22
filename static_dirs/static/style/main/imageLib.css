@@ -1,0 +1,120 @@
+div.image {
+  position: relative;
+  width: 100%;
+}
+
+div.image.portrait:before {
+  content: "";
+  display: block;
+  padding-top: 150%;
+}
+
+div.image.landscape:before {
+  content: "";
+  display: block;
+  padding-top: 75%;
+}
+
+div.image.square:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+div.image.autofill {
+  height: 100%;
+}
+
+div.image.contain .imgCanvas .imgContain .picFill {
+  background-size: contain;
+}
+
+div.image.zoom1x5 .imgCanvas .imgContain .picFill {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+div.image.hoverZoom1x5:hover .imgCanvas .imgContain .picFill {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+div.image.hoverZoom1x25:hover .imgCanvas .imgContain .picFill {
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
+}
+
+div.image.hoverGreyout:hover .imgCanvas .imgContain .overlay {
+  background-color: rgba(51, 51, 51, 0.5);
+}
+
+div.image.hoverblur:hover .imgCanvas .imgContain .picFill {
+  -webkit-filter: blur(8px);
+          filter: blur(8px);
+}
+
+div.image .imgCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+
+div.image .imgCanvas .imgContain {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  float: left;
+  display: inline-block;
+}
+
+div.image .imgCanvas .imgContain .picFill {
+  height: 100%;
+  width: 100%;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  background-size: cover;
+}
+
+div.image .imgCanvas .imgContain .picFill:before {
+  content: "";
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+div.image .imgCanvas .imgContain .overlay {
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 7;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+}
+
+div.image .imgCanvas .imgContain .overlay a, div.image .imgCanvas .imgContain .overlay div#title {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  color: #ddd;
+  text-align: center;
+  text-decoration: none;
+}
+/*# sourceMappingURL=imageLib.css.map */

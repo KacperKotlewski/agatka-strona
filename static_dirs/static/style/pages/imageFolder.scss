@@ -1,0 +1,30 @@
+@import '../_settings';
+
+#container{
+    #folderNameHeader{
+        height:16vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+section#imgGallery{
+    display: grid;
+    grid-gap: $imgGalleryPadding;
+    padding: $imgGalleryPadding;
+
+    div.imgRow{
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-gap: $imgGalleryPadding;
+
+        height: calc(33.3vw - (#{$imgGalleryPadding} *4/3));
+        grid-template-columns: 1fr 1fr 1fr;
+        @media (max-width : 750px), (orientation: portrait){
+            height: calc(50vw - (#{$imgGalleryPadding} *4/3));
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}

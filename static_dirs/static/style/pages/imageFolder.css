@@ -1,0 +1,40 @@
+#container #folderNameHeader {
+  height: 16vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section#imgGallery {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 3vw;
+  padding: 3vw;
+}
+
+section#imgGallery div.imgRow {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  grid-gap: 3vw;
+  height: calc(33.3vw - (3vw *4/3));
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  section#imgGallery div.imgRow {
+    height: calc(50vw - (3vw *4/3));
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+/*# sourceMappingURL=imageFolder.css.map */
