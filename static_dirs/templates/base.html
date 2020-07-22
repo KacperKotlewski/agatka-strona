@@ -11,6 +11,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Exo|Exo+2&subset=latin,latin-ext" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/81686d98c9.js" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
         {% load static %}
         <link rel="stylesheet" href="{% static 'style/main/main.css' %}">
         <link rel="stylesheet" href="{% static 'style/main/imageLib.css' %}">
@@ -18,6 +21,8 @@
         <link rel="stylesheet" href="{% static 'style/main/lightMode.css' %}">
         <link rel="stylesheet" href="{% static 'fontello/css/fontello.css' %}">
         <script src="{% static 'js/darkmode.js' %}"></script>
+        <script src="{% static 'js/menuMobileButton.js' %}"></script>
+        <script src="{% static 'js/onresize.js' %}"></script>
 
         <!-- <link rel="stylesheet" type="text/css" href="style/main/main.css">
         <link rel="stylesheet" type="text/css" href="style/main/imageLib.css">
@@ -28,7 +33,6 @@
         <script src="js/darkmode.js"></script>
         <script src="js/menuMobileButton.js"></script>
         <script src="js/onresize.js"></script>
-        <script src="js/onload.js"></script>
         <script src="js/ajaxGalleryMenager.js"></script>
         <script src="js/scrollTo.js"></script> -->
         
@@ -40,15 +44,17 @@
     <div id="container">
     <div class="lightModeMenu" id="menuBar">
     <a href="./">
-                <div id="logo" class="picFill"></div>
+                <div id="logo" class="picFill" style="background-image: url('{{logo.image_for_logo.url}}');"></div>
                 </a>
                 <i onclick="menuBtn(this)" id="menubutton" class="icon-menu"></i>
                 <menu>
-                    <!--
-                    foreach ($tableOfButtonsInMenu as $key => $value) {
-                                echo "<li><a href=\"$value\"".($title==$key?"class='hovered'":"").">$key</a></li>";
-                            }
-                    -->
+
+                    {% for tab in menu_tabs %}
+                        <li><a href="{{tab.link}}" {% if tab.to_new_tab %}target="_blank"{% endif %} {% if tab.page == page %}class='hovered'{% endif %}}>
+                            {% if tab.font_awesome_icon != "" %} <i class='fab fa-{{tab.font_awesome_icon}}'></i> {% endif %}
+                            {% if not tab.show_icon_only %} {{tab.name}} {% endif %}
+                        </a></li>
+                    {% endfor %}
                     <div><li id="settings">
                         <i class="icon-cog"></i>
                             <ul class="submenu">
@@ -82,12 +88,23 @@
                 {% if show_title %}<header><h1>{{title}}</h1></header>{% endif %}
             </div>
             <div id="menuback"></div>
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}><span>{{ message }}</span><i class="fas fa-times-circle" onclick="closeMessage(this);"></i></li>
+                {% endfor %}
+            </ul>
             <div id="main">
 
                 
                 <script>
                     var isDark = {{ isDark }}; 
                     darkmodeSet();
+                    
+
+                    function closeMessage(elem){
+                        msg = elem.parentElement;
+                        msg.parentNode.removeChild(msg);
+                    }
                 </script>
                
                 {% block content %}
@@ -100,9 +117,6 @@
                 </footer>
             </div>
         </div>
-    <!-- if(isset($feedBack) && !empty($feedBack)){
-        echo "<script>alert('".$feedBack."');</script>";
-    } -->
 
     </body>
 </html>

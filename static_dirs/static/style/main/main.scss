@@ -49,6 +49,19 @@ html, body{
   background-size: cover;
 }
 
+ul.messages{
+  padding: 0px;
+  li.alert{
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    i{
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+  }
+}
+
 
 
 body::-webkit-scrollbar {

@@ -3,12 +3,13 @@
 <!-- {% block title %}{{ section.title }}{% endblock %} -->
 
 {% block additional_include %}
-    <link rel="stylesheet" type="text/css" href="style/pages/home.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/pages/home.css' %}">
 {% endblock %}
 {% block content %}
     <div id="pageContent">
         <section id="text">
-            some text
+            {{settings.main_text}}
         </section>
         <section id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
             <ol class="carousel-indicators" id="carouselMiniButtons">
@@ -35,6 +36,11 @@
                 });
             </script>
             -->
+            <script>
+                $('.carousel').carousel({
+                    interval: 3000,
+                });
+            </script>
         </section>
     </div>
 {% endblock %}

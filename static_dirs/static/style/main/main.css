@@ -65,6 +65,23 @@ html, body {
   background-size: cover;
 }
 
+ul.messages {
+  padding: 0px;
+}
+
+ul.messages li.alert {
+  list-style: none;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr auto;
+      grid-template-columns: 1fr auto;
+}
+
+ul.messages li.alert i {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
 body::-webkit-scrollbar {
   width: 0vw;
   scrollbar-width: 0vw;

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'homepage',
+    'about_me',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,7 +132,7 @@ media_str = "static_dirs/media"
 MEDIA_URL = f'/{media_str}/'
 MEDIA_ROOT  = os.path.join(BASE_DIR, media_str)
 
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = '.\static_dirs\static\credentials.json'
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'static_dirs/static/credentials.json')
 GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'dane_stron/agatka'
 
 """
