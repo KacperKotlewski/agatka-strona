@@ -4,30 +4,47 @@
 
 {% block additional_include %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style/pages/aboutMe.css' %}">
+    <link rel="stylesheet" href="{% static 'style/pages/contact.css' %}">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcMQcQUAAAAAKBWZib-WnlR0ZduVMIA_snm42Ri"></script>
 {% endblock %}
 {% block content %}
+
 <div id="container">
     <section id="content">
-        <article id='images'>
-            <div class='image contain autofill'>
-                <div class='imgCanvas'><div class='imgContain'>
-                    <div class='overlay'></div>
-                        <div class='picFill' style='background-image: url({{settings.image.url}});'> </div>
+            <form id="messageForm" method="POST">
+                <div class="halfOfForm">
+                    <div class="formSection">
+                        <label>Imię i nazwisko<span style="color:red;">*</span></label>
+                        <input type="text" placeholder="Wpisz swoje imię i nazwisko" name="names" data-validate="required,Generic"/>
                     </div>
+                    <div class="formSection">
+                        <label>E-Mail<span style="color:red;">*</span></label>
+                        <input type="text" placeholder="Twój e-mail" name="email" data-validate="required,Email,required" required=""/>
+                    </div> 
+                    <div class="formSection">
+                        <label>Temat</label>
+                        <input type="text" placeholder="W jakiej sprawie piszesz" name="topic" data-validate="Generic"/>
+                    </div> 
                 </div>
-            </div>
-        </article>
-
-        <article id='aboutme'>
-            <h2>{{settings.title}}</h2>
-            <span>{{settings.main_text}}</span>
-        </article>
+                <div class="halfOfForm" id="secHalfOfForm">
+                    <div class="formSection">
+                        <label>Wiadomość<span style="color:red;">*</span></label>
+                        <textarea placeholder="Czego dusza pragnie?" name="message" data-validate="required, Generic"></textarea>
+                    </div> 
+                    <input type="hidden" value="" name="recaptcha_response" id="recaptchaResponse">
+                    <input type="submit" id="submit" value="Wyślij wiadomość"/>
+                </div>
+            </form>
     </section>
-    <script>
-        $(document).ready(function() {
-            scrollToElem('#aboutme');
-        });
-    </script>
 </div>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LcMQcQUAAAAAKBWZib-WnlR0ZduVMIA_snm42Ri', { action: 'contact' })
+            .then(function (token) {
+            var recaptchaResponse = document.getElementById('recaptchaResponse');
+            console.log(recaptchaResponse);
+            recaptchaResponse.value = token;
+        });
+    });
+</script>
 {% endblock %}
