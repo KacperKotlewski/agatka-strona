@@ -12,6 +12,5 @@ def Homepage(request):
 
 def SetDarkMode(request):
     response = HttpResponse('darkness_cookie')
-    response.set_cookie('isDark', request.GET['isDark'])
-    data = {"success": True}
-    return JsonResponse(data)
+    response.set_cookie(key='isDark', value=request.GET['isDark'])
+    return response

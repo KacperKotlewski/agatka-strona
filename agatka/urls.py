@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include('homepage.urls')),
     path('about-me', include('about_me.urls')),
     path('contact', include('contact.urls')),
+    path('image', include('images.urls')),
 ]
 
 from django.conf import settings
