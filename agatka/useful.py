@@ -14,7 +14,8 @@ def base_context(request):
         except:
             tab.link = None
     
-    Logo = page_models.MenuTab.objects.filter(is_a_logo = True, display = True)[0]
+    logos_querry = page_models.MenuTab.objects.filter(is_a_logo = True, display = True)
+    Logo = logos_querry[0] if logos_querry.count() > 0 else None
     ctx = {
         "title" : "Agatka",
         "show_title" : False,
