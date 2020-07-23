@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body, html{
+            height: 100vh;
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+        }
+        #img{
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+        #center{
+            height: 100%;
+            width: 100%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="center">
+        {% load static %}
+        <div id="img" style="background-image: url('{{img.image.url}}');">
+    </div>
+</body>
+</html>

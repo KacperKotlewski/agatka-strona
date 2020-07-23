@@ -8,7 +8,7 @@ class Category(models.Model):
     display = models.BooleanField(default=True)
     display_as_category = models.BooleanField(default=True)
     relase_date = models.DateTimeField(auto_now=True)
-    background_image = models.ImageField(upload_to="pics/main_images/categories", blank=True, null=True)
+    background_image = models.ImageField(upload_to="pics/images", blank=True, null=True)
 
     def __str__(self):
         return self.visible_name
@@ -18,7 +18,7 @@ class Group(models.Model):
     friendly_link = models.CharField(max_length=128)
     display = models.BooleanField(default=True)
     relase_date = models.DateTimeField(auto_now=True)
-    background_image = models.ImageField(upload_to="pics/main_images/groups", blank=True, null=True)
+    background_image = models.ImageField(upload_to="pics/images", blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -29,7 +29,7 @@ class Image(models.Model):
     friendly_link = models.CharField(max_length=128)
     display = models.BooleanField(default=True)
     relase_date = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to="pics")
+    image = models.ImageField(upload_to="pics/images")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
 

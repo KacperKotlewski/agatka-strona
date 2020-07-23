@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
 from django.template import RequestContext
 from django.contrib import messages
+from .settings import MEDIA_ROOT
 
 def base_context(request):
     isDark = request.COOKIES['isDark'] if ('isDark' in request.COOKIES) else False
