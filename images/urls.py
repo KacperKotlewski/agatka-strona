@@ -6,4 +6,5 @@ urlpatterns = [
     path('/<slug:image>', views.Images),
     path('/<slug:group>/<slug:image>', views.Images),
     path('/<slug:category>/<slug:group>/<slug:image>', views.Images),
+    path('s', views.GetImages),
 ]

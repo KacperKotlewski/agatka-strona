@@ -1,6 +1,6 @@
-var imageArray = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+SetArray();
 
-initCrousel(mediaMaches);
+var imageArray = [];
 
 function addToCarusel(item, index){
     var articles = "";
@@ -8,7 +8,7 @@ function addToCarusel(item, index){
         articles += "<article><div class='image autofill hoverZoom1x25 hoverGreyout'>"+
         "<div class='imgCanvas'><div class='imgContain'>"+
         "<div class='overlay'></div>"+
-        "<div class='picFill' style='background-image: url(\"pic/" + pic + "\");'></div>"+
+        "<div class='picFill' style='background-image: url(" + pic.url +");'></div>"+
         "</div></div></div></article>";
     });
     $('#carouselMain').append('<div class=\"carousel-item '+ (index==0?'active':'') + ' sliderPart\">'
@@ -22,10 +22,10 @@ function addToCarusel(item, index){
     );
 }
 
-function initCrousel(mediaMaches) {    
+function initCrousel(mediaMaches) {
+    
     $("#carouselMain").empty();
     $("#carouselMiniButtons").empty();    
-    
     
     if(mediaMaches){
         for (let index = 0; index < imageArray.length; index++) {
@@ -47,4 +47,16 @@ function repeatStringNumTimes(string, times) {
       times--;
     }
     return repeatedString;
+  }
+
+function SetArray(){
+    $.ajax({
+        type: 'GET',
+        url: 'images',
+        data: {'count' : 9},
+        success: function (data) {
+            imageArray = data.imgs;
+            initCrousel(mediaMaches);
+        }
+    });
   }

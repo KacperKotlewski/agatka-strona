@@ -4,6 +4,7 @@ from . import models
 from django.template import RequestContext
 from django.contrib import messages
 from agatka.useful import *
+from images import models as images_models
 
 def Homepage(request):
     ctx = set_navname("homepage", base_context(request))
