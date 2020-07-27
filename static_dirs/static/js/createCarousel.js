@@ -1,6 +1,10 @@
 SetArray();
 
 var imageArray = [];
+function isMobile() {
+    try{ document.createEvent("TouchEvent"); return true; }
+    catch(e){ return false; }
+  }
 
 function addToCarusel(item, index){
     var articles = "";
@@ -38,6 +42,20 @@ function initCrousel(mediaMaches) {
             addToCarusel(element, index);
         }
     } 
+
+    if($("#carouselMiniButtons li").length > 1) {
+        if(!isMobile()){
+            $(".slideBtn").css('visibility', 'visible')
+            $(".slideBtn").prop( "disabled", false )
+        }
+        $("#carouselMiniButtons li").css('visibility', 'visible')
+        $("#carouselMiniButtons li").prop( "disabled", false )
+    } else {
+        $(".slideBtn").css('visibility', 'hidden')
+        $(".slideBtn").prop( "disabled", true )
+        $("#carouselMiniButtons li").css('visibility', 'hidden')
+        $("#carouselMiniButtons li").prop( "disabled", true )
+    }
 }
 
 function repeatStringNumTimes(string, times) {
