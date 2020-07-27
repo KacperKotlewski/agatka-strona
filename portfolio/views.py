@@ -10,4 +10,4 @@ def Portfolio(request, category=None):
     name = "portfolio"
     ctx = set_navname(name, base_context(request))
     # messages.info(request, 'Your password has been changed successfully!')
-    return render(request, "home.html", ctx)
+    return render(request, "portfolio.html", ctx)

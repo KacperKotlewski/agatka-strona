@@ -6,6 +6,7 @@ class Page(models.Model):
         ('home','hompage'),
         ('me','about me'),
         ('contact','contact'),
+        ('portfolio','portfolio'),
     )
 
     id_name = models.CharField(max_length=128)

@@ -22,6 +22,7 @@ urlpatterns = [
     path('about-me', include('about_me.urls')),
     path('contact', include('contact.urls')),
     path('image', include('images.urls')),
+    path('portfolio', include('portfolio.urls')),
 ]
 
 from django.conf import settings

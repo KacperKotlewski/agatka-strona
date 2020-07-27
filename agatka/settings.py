@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'about_me',
     'contact',
     'images',
+    'portfolio',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
