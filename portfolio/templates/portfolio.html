@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+<!-- {% block title %}{{ section.title }}{% endblock %} -->
+
+{% block additional_include %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/pages/home.css' %}">
+{% endblock %}
+{% block content %}
+    <div id="pageContent">
+        <section id="text">
+            {{settings.main_text}}
+        </section>
+        <section id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators" id="carouselMiniButtons">
+            </ol>
+            <div class="carousel-inner" id="carouselMain">
+            </div>
+            <a class="carousel-control-prev slideBtn" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon slideBtnIcon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next slideBtn" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon slideBtnIcon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+            <script src="{% static 'js/createCarousel.js' %}"></script>
+            <script>
+                $('.carousel').carousel({
+                    interval: 3000,
+                });
+            </script>
+        </section>
+    </div>
+{% endblock %}
