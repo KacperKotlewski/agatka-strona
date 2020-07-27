@@ -1,3 +1,21 @@
+var photoArrayPortfolio = []
+function ajaxGetImages(cat=null){
+    let count = photoArrayPortfolio.length -(-9);
+    data = {'count' : count};
+    if(cat != null){
+        data['category'] = cat;
+    }
+    $.ajax({
+        type: 'GET',
+        url: '/images',
+        data: data,
+        success: function (data) {
+            photoArrayPortfolio = data.imgs;
+            buildPage(mediaMaches);
+        }
+    });
+}
+
 function buildPage(mediaMaches){
     
     $("#imgGallery").empty();  
@@ -14,7 +32,7 @@ function buildPage(mediaMaches){
                 res += "<article><div class='image autofill hoverZoom1x25 hoverGreyout'>"+
                 "<div class='imgCanvas'><div class='imgContain'>"+
                 "<div class='overlay' onclick='openGallery("+(j+(i*imagePerRow)).toString()+")'></div>"+
-                "<div class='picFill' id='picture"+(j+(i*imagePerRow)).toString()+"' style='background-image: url(\"pic/" + photoArrayPortfolio[j+(i*imagePerRow)] + "\");'></div>"+
+                "<div class='picFill' id='picture"+(j+(i*imagePerRow)).toString()+"' style='background-image: url(\"" + photoArrayPortfolio[j+(i*imagePerRow)].url + "\");'></div>"+
                 "</div></div></div></article>";
             }
         }
@@ -23,4 +41,3 @@ function buildPage(mediaMaches){
         $('#imgGallery').append(res);
     }
 }
-buildPage(mediaMaches);

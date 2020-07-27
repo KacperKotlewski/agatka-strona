@@ -4,33 +4,48 @@
 
 {% block additional_include %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style/pages/home.css' %}">
+    <link rel="stylesheet" href="{% static 'style/pages/portfolio.css' %}">
 {% endblock %}
 {% block content %}
-    <div id="pageContent">
-        <section id="text">
-            {{settings.main_text}}
+    <div id="container">
+        <section id="galleries">
+            <!-- <?php 
+                $galleryPhotos = array(
+                    "event" => array("event.jpg", "ewenty", "events"), 
+                    "party" => array("party.jpg", "imprezy<br>okolicznościowe", "occasional-parties"), 
+                    "portrait" => array("portrait.jpg", "portrety", "portraits")
+                );
+                foreach ($galleryPhotos as $key => $value) {
+                    echo "<article id='gallery_$key' class='photoGalleryMiniature'>
+                    <div class='image autofill hoverZoom1x5 hoverblur'>
+                    <div class='imgCanvas'><div class='imgContain'>
+                    <div class='overlay'>
+                    <a href='$value[2]'>
+                    <div class='title'>
+                    <span>".mb_strtoupper($value[1])."</span>
+                    </div></a></div>
+                    <div class='picFill' style='background-image: url(\"pic/".$value[0]."\");'></div>
+                    </div></div></div></article>";
+                }
+            ?> -->
+            {% for cat in subcat %}
+                <article id='gallery' class='photoGalleryMiniature'>
+                <div class='image autofill hoverZoom1x5 hoverblur'>
+                <div class='imgCanvas'><div class='imgContain'>
+                <div class='overlay'>
+                <a href='portfolio/{{cat.friendly_link}}'>
+                <div class='title'>
+                <span>{{cat.visible_name|upper}}</span>
+                </div></a></div>
+                <div class='picFill' style='background-image: url("{{cat.background_image.url}}");'></div>
+                </div></div></div></article>
+            {% endfor %}
         </section>
-        <section id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
-            <ol class="carousel-indicators" id="carouselMiniButtons">
-            </ol>
-            <div class="carousel-inner" id="carouselMain">
-            </div>
-            <a class="carousel-control-prev slideBtn" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon slideBtnIcon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next slideBtn" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon slideBtnIcon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-
-            <script src="{% static 'js/createCarousel.js' %}"></script>
-            <script>
-                $('.carousel').carousel({
-                    interval: 3000,
-                });
-            </script>
+        <section id='imgGallery'>
         </section>
+        <script src="{% static 'js/portfolioPageBuild.js' %}"></script>
+        <script>
+            ajaxGetImages();
+        </script>
     </div>
 {% endblock %}

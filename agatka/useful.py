@@ -11,7 +11,7 @@ def base_context(request):
     menu_tabs = page_models.MenuTab.objects.filter(is_a_logo = False, display = True).order_by('-priority')
     for tab in menu_tabs:
         try:
-            tab.link = tab.page.friendly_link if not tab.is_external_link else tab.external_link
+            tab.link = "/" + tab.page.friendly_link if not tab.is_external_link else tab.external_link
         except:
             tab.link = None
     

@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.Portfolio, name="portfolio"),
     path('/<slug:category>', views.Portfolio),
     path('/<slug:category>/<slug:group>', views.Portfolio),
+    path('/get-subcategories', views.GetSubcategories),
 ]
