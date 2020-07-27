@@ -1,13 +1,12 @@
 @import '../_settings';
 
 #main{
-    height: (150vh - ($menuSize*2));
-    @media (max-width : 750px), (orientation: portrait){
-    height: (150vh - ($portraitSize*2));
-    }
 
     #pageContent{
-        height: 100%;
+        height: (100vh - ($menuSize));
+        @media (max-width : 750px), (orientation: portrait){
+            height: (100vh - ($portraitSize));
+        }
         width: $width;
         display: grid;
         grid-template-columns: 1fr;
@@ -69,7 +68,7 @@
     padding-top:10%;
     padding-bottom:10%;
 }
-@media (pointer: coarse){
+@media (pointer: coarse), (pointer: none){
 
     .carousel-control-prev, .carousel-control-next{
         display: none;

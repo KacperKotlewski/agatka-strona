@@ -106,7 +106,15 @@
                     function closeMessage(elem){
                         msg = elem.parentElement;
                         msg.parentNode.removeChild(msg);
+                        closeMsgBox();
                     }
+                    function closeMsgBox(){
+                        msgbox = $(".messages");
+                        if(messages.childElementCount == 0){
+                            msgbox.remove();
+                        }
+                    }
+                    closeMsgBox();
                 </script>
                
                 {% block content %}
@@ -115,8 +123,7 @@
 
                 
                 <footer>
-                    <span>footer</span>
-                    <span>Made by Kacper Kotlewski</span>
+                    Made by Kacper Kotlewski
                 </footer>
             </div>
         </div>

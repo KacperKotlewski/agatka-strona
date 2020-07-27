@@ -18,3 +18,7 @@ $paddingBtnFromSlider: 2% !default;
 
 //portfolio
 $imgGalleryPadding: 3vw;
+
+@function vh($quantity) {
+    @return calc(var(--vh, 1vh) * #{$quantity});
+    }

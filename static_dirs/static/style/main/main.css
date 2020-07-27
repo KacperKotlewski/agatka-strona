@@ -30,14 +30,14 @@ html, body {
   display: grid;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
-  -ms-grid-rows: minmax(50vh, auto) 35vh;
-      grid-template-rows: minmax(50vh, auto) 35vh;
+  -ms-grid-rows: minmax(50vh, auto) auto;
+      grid-template-rows: minmax(50vh, auto) auto;
 }
 
 @media (max-width: 750px), (orientation: portrait) {
   #main {
-    -ms-grid-rows: minmax(50vh, auto) 40vh;
-        grid-template-rows: minmax(50vh, auto) 40vh;
+    -ms-grid-rows: minmax(50vh, auto) auto;
+        grid-template-rows: minmax(50vh, auto) auto;
   }
 }
 
@@ -58,7 +58,7 @@ html, body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  font-size: 3em;
+  font-size: 1.5em;
 }
 
 .picFill {

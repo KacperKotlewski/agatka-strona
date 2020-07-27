@@ -27,9 +27,9 @@ html, body{
     width: $width;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(50vh, auto) (50vh-$menuSize);
+    grid-template-rows: minmax(50vh, auto) auto;
     @media (max-width : 750px), (orientation: portrait){
-      grid-template-rows: minmax(50vh, auto) (50vh - ($portraitSize));
+      grid-template-rows: minmax(50vh, auto) auto;
     }
 
     footer{
@@ -38,7 +38,7 @@ html, body{
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        font-size: 3em;
+        font-size: 1.5em;
     }
 }
 

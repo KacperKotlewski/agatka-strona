@@ -1,15 +1,5 @@
-#main {
-  height: 120vh;
-}
-
-@media (max-width: 750px), (orientation: portrait) {
-  #main {
-    height: 130vh;
-  }
-}
-
 #main #pageContent {
-  height: 100%;
+  height: 85vh;
   width: 100vw;
   display: -ms-grid;
   display: grid;
@@ -21,6 +11,12 @@
   -ms-grid-rows: 1fr 50vh;
       grid-template-rows: 1fr 50vh;
   overflow-y: visible;
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  #main #pageContent {
+    height: 90vh;
+  }
 }
 
 #main #pageContent #text {
@@ -100,7 +96,7 @@
   padding-bottom: 10%;
 }
 
-@media (pointer: coarse) {
+@media (pointer: coarse), (pointer: none) {
   .carousel-control-prev, .carousel-control-next {
     display: none;
   }
