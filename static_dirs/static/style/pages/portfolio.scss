@@ -57,20 +57,34 @@
 }
 
 section#imgGallery{
-    display: grid;
-    grid-gap: $imgGalleryPadding;
-    padding: $imgGalleryPadding;
-
-    div.imgRow{
+    div#images{
         display: grid;
-        grid-template-rows: 1fr;
         grid-gap: $imgGalleryPadding;
+        padding: $imgGalleryPadding;
 
-        height: calc(33.3vw - (#{$imgGalleryPadding} *4/3));
-        grid-template-columns: 1fr 1fr 1fr;
-        @media (max-width : 750px), (orientation: portrait){
-            height: calc(50vw - (#{$imgGalleryPadding} *4/3));
-            grid-template-columns: 1fr 1fr;
+        div.imgRow{
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-gap: $imgGalleryPadding;
+
+            height: calc(33.3vw - (#{$imgGalleryPadding} *4/3));
+            grid-template-columns: 1fr 1fr 1fr;
+            @media (max-width : 750px), (orientation: portrait){
+                height: calc(50vw - (#{$imgGalleryPadding} *4/3));
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+    div#loadingCircle{
+        display: flex;
+        justify-content: center;
+        padding-bottom: $imgGalleryPadding;
+        i{
+            font-size: 4em;
+            -webkit-animation: loadingRotation 1s infinite;
+        }
+        span{
+            font-size: 2em;
         }
     }
 }

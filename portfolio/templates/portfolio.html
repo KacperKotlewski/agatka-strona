@@ -42,10 +42,12 @@
             {% endfor %}
         </section>
         <section id='imgGallery'>
+            <div id="images"></div>
+            <div id="loadingCircle"><i class="fas fa-spinner"></i></div>
         </section>
         <script src="{% static 'js/portfolioPageBuild.js' %}"></script>
         <script>
-            ajaxGetImages();
+            startBuildingPage();
         </script>
     </div>
 {% endblock %}

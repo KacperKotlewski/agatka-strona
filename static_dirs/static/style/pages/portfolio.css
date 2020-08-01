@@ -1,3 +1,33 @@
+@-webkit-keyframes loadingRotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  12.5% {
+    -webkit-transform: rotate(45deg);
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+  }
+  37.5% {
+    -webkit-transform: rotate(135deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  62.5% {
+    -webkit-transform: rotate(225deg);
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+  }
+  87.5% {
+    -webkit-transform: rotate(315deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
 #galleries {
   height: 50vh;
   display: -ms-grid;
@@ -87,14 +117,14 @@
   }
 }
 
-section#imgGallery {
+section#imgGallery div#images {
   display: -ms-grid;
   display: grid;
   grid-gap: 3vw;
   padding: 3vw;
 }
 
-section#imgGallery div.imgRow {
+section#imgGallery div#images div.imgRow {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr;
@@ -106,10 +136,29 @@ section#imgGallery div.imgRow {
 }
 
 @media (max-width: 750px), (orientation: portrait) {
-  section#imgGallery div.imgRow {
+  section#imgGallery div#images div.imgRow {
     height: calc(50vw - (3vw *4/3));
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
   }
+}
+
+section#imgGallery div#loadingCircle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 3vw;
+}
+
+section#imgGallery div#loadingCircle i {
+  font-size: 4em;
+  -webkit-animation: loadingRotation 1s infinite;
+}
+
+section#imgGallery div#loadingCircle span {
+  font-size: 2em;
 }
 /*# sourceMappingURL=portfolio.css.map */

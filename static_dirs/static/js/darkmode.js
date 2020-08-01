@@ -56,7 +56,7 @@ function ajaxUpdateDisplayMode()
 {    
   $.ajax({
     type: 'GET',
-    url: 'SetDarkMode',
+    url: '/SetDarkMode',
     data: {'isDark' : isDark}
 });
 }

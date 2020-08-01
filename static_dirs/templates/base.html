@@ -24,7 +24,7 @@
         <script src="{% static 'js/menuMobileButton.js' %}"></script>
         <script src="{% static 'js/onresize.js' %}"></script>
         <script src="{% static 'js/scrollTo.js' %}"></script>
-        <script src="{% static 'js/ajaxGalleryMenager.js' %}"></script>
+        <script src="{% static 'js/newGallery.js' %}"></script>
 
         <!-- <link rel="stylesheet" type="text/css" href="style/main/main.css">
         <link rel="stylesheet" type="text/css" href="style/main/imageLib.css">
@@ -43,6 +43,10 @@
         <title>{{ title }}</title>
 </head>
 <body class="lightMode">
+    <div id="imageFullscreen">
+
+        <div id="imageContainer"></div>
+    </div>
     <div id="container">
     <div class="lightModeMenu" id="menuBar">
     <a href="./">
