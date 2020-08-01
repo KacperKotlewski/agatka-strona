@@ -15,3 +15,6 @@ def SetDarkMode(request):
     response = HttpResponse('darkness_cookie')
     response.set_cookie(key='isDark', value=request.GET['isDark'])
     return response
+
+def view_404(request, exception=None):
+    return redirect('/')

@@ -17,6 +17,30 @@
     }
 }
 
+.brightModeHoverButton{
+    .lightMode{
+        color: rgba($textColor, 0.7);
+        background-color: rgba($menuBgColor, 0.0);
+        .outline{
+            color: $textColor;
+            -webkit-text-stroke: 1px #{$darktextColor};
+        }
+        &:hover{
+            color: rgba($textColor, 1);
+        }
+    }
+    .darkMode{
+        color: rgba($darktextColor, 0.7);
+        background-color: rgba($darkmenuBgColor, 0.0);
+        .outline{
+            color: $darktextColor;
+            -webkit-text-stroke: 1px #{$textColor};
+        }
+        &:hover{
+            color: rgba($darktextColor, 1);
+        }
+    }
+}
 
 
 .lightModeMenu{

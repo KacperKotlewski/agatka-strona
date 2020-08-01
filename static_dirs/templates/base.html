@@ -13,7 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Exo|Exo+2&subset=latin,latin-ext" rel="stylesheet">
         <script src="https://kit.fontawesome.com/81686d98c9.js" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+        <base href="/">
         {% load static %}
         <link rel="stylesheet" href="{% static 'style/main/main.css' %}">
         <link rel="stylesheet" href="{% static 'style/main/imageLib.css' %}">
@@ -43,13 +43,15 @@
         <title>{{ title }}</title>
 </head>
 <body class="lightMode">
-    <div id="imageFullscreen">
-
-        <div id="imageContainer"></div>
+    <div id="imageFullscreen" class="brightModeHoverButton">
+        <div id="imgGrid">
+            <div id="close" class="lightMode" onclick="closeGallery()"><i class="fas fa-times"></i></div>
+            <div id="imageContainer"></div>
+        </div>
     </div>
     <div id="container">
     <div class="lightModeMenu" id="menuBar">
-    <a href="./">
+    <a href="/">
                 <div id="logo" class="picFill" style="background-image: url('{{logo.image_for_logo.url}}');"></div>
                 </a>
                 <i onclick="menuBtn(this)" id="menubutton" class="icon-menu"></i>

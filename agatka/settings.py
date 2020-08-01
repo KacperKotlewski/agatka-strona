@@ -128,6 +128,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 static_str = "static_dirs/static"
 STATIC_URL = f'/{static_str}/'
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, static_str)
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, static_str),
 ]
@@ -135,6 +137,27 @@ STATICFILES_DIRS = [
 media_str = "static_dirs/media"
 MEDIA_URL = f'/{media_str}/'
 MEDIA_ROOT  = os.path.join(BASE_DIR, media_str)
+
+"""
+static_str = "static_dirs/static"
+STATIC_URL = f'/{static_str}/'
+if DEBUG: 
+   STATIC_ROOT = os.path.join(BASE_DIR, '/{static_str}')
+else:
+   STATIC_ROOT = os.path.join(BASE_DIR, static_str) 
+
+media_str = "static_dirs/media"
+MEDIA_URL = f'/{media_str}/'
+if DEBUG: 
+   MEDIA_ROOT = os.path.join(BASE_DIR, '/{media_str}')
+else:
+   MEDIA_ROOT = os.path.join(BASE_DIR, media_str)
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static_dirs"),
+]
+"""
 
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'static_dirs/static/credentials.json')
 GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'dane_stron/agatka'

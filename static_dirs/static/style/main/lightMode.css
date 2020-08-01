@@ -48,6 +48,34 @@
   -webkit-text-stroke: 1px #333;
 }
 
+.brightModeHoverButton .lightMode {
+  color: rgba(51, 51, 51, 0.7);
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.brightModeHoverButton .lightMode .outline {
+  color: #333;
+  -webkit-text-stroke: 1px #ddd;
+}
+
+.brightModeHoverButton .lightMode:hover {
+  color: #333333;
+}
+
+.brightModeHoverButton .darkMode {
+  color: rgba(221, 221, 221, 0.7);
+  background-color: rgba(51, 51, 51, 0);
+}
+
+.brightModeHoverButton .darkMode .outline {
+  color: #ddd;
+  -webkit-text-stroke: 1px #333;
+}
+
+.brightModeHoverButton .darkMode:hover {
+  color: #dddddd;
+}
+
 .lightModeMenu {
   color: #999;
   background-color: white;

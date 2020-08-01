@@ -29,7 +29,7 @@
 }
 
 #menuBar {
-  z-index: 50;
+  z-index: 10;
   position: fixed;
   top: 0px;
   overflow: hidden;
@@ -40,7 +40,7 @@
 }
 
 #menuBar menu {
-  z-index: 50;
+  z-index: 10;
   padding: 0px;
   margin: 0px;
   height: 100%;
@@ -281,7 +281,7 @@
     padding-bottom: 10px;
   }
   #menuBar menu ul.submenu {
-    z-index: 50;
+    z-index: 10;
     font-size: 0.7em;
     display: none;
     width: 100vw;
@@ -364,7 +364,7 @@
     margin-top: 0.7em;
     width: 25vw;
     min-width: 160px;
-    z-index: 50;
+    z-index: 10;
     padding: 1.1em 12px;
     padding-right: 55px;
   }
