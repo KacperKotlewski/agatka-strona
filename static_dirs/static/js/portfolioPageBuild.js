@@ -47,7 +47,7 @@ function buildPage(mediaMaches){
             if((j+(i*imagePerRow))<photoArrayPortfolio.length){
                 res += "<article><div class='image autofill hoverZoom1x25 hoverGreyout'>"+
                 "<div id='image_"+(j+(i*imagePerRow)).toString()+"' class='imgCanvas'><div class='imgContain'>"+
-                "<div class='overlay' onclick='fullscreenImage("+(j+(i*imagePerRow)).toString()+")'></div>"+
+                "<div class='overlay pointer' onclick='fullscreenImage("+(j+(i*imagePerRow)).toString()+")'></div>"+
                 "<div class='picFill' id='picture"+(j+(i*imagePerRow)).toString()+"' style='background-image: url(\"" + photoArrayPortfolio[j+(i*imagePerRow)].url + "\");'></div>"+
                 "</div></div></div></article>";
             }

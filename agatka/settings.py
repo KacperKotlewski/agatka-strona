@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.humanize',
     'django.contrib.staticfiles',
-    'gdstorage'
 ]
 
 MIDDLEWARE = [
@@ -158,9 +157,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_dirs"),
 ]
 """
-
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'static_dirs/static/credentials.json')
-GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'dane_stron/agatka'
 
 """
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'

@@ -11,8 +11,8 @@ function addToCarusel(item, index){
     item.forEach(pic => {
         articles += "<article><div class='image autofill hoverZoom1x25 hoverGreyout'>"+
         "<div class='imgCanvas'><div class='imgContain'>"+
-        "<div class='overlay'></div>"+
-        "<div class='picFill' style='background-image: url(" + pic.url +");'></div>"+
+        "<div class='overlay pointer' onclick='fullscreenImage("+index+")'></div>"+
+        "<div id='picture"+index+"' class='picFill' style='background-image: url(" + pic.url +");'></div>"+
         "</div></div></div></article>";
     });
     $('#carouselMain').append('<div class=\"carousel-item '+ (index==0?'active':'') + ' sliderPart\">'
@@ -78,3 +78,15 @@ function SetArray(){
         }
     });
   }
+
+$(document).ready(function() {
+    $("#carouselExampleIndicators").on('touchend',function(){
+         let dir = isSwipeingObject("#carouselExampleIndicators");
+         if(dir == "left"){
+            $(this).carousel('next');
+         }
+         else if(dir == "right"){
+            $(this).carousel('prev');
+         }
+     });
+ });

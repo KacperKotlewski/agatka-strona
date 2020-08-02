@@ -91,6 +91,10 @@ html, body {
   font-size: 1.5em;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .picFill {
   width: 100%;
   height: 100%;
@@ -205,6 +209,7 @@ body::-webkit-scrollbar-thumb {
   top: 8px;
   right: 16px;
   font-size: 3em;
+  cursor: pointer;
 }
 
 #imageFullscreen #imgGrid #imageContainer {
@@ -213,6 +218,5 @@ body::-webkit-scrollbar-thumb {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */
