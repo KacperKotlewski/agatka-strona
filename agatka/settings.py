@@ -140,6 +140,14 @@ MEDIA_ROOT  = os.path.join(BASE_DIR, media_str)
 
 RECAPTCHA_PUBLIC_KEY = '6Lekl7wZAAAAANsc8z8k-BAH6OupRViLC7T3VH-0'
 RECAPTCHA_PRIVATE_KEY = '6Lekl7wZAAAAANcMq_ZVIjFddHctMKxEyCFFOTLw'
+RECAPTCHA_REQUIRED_SCORE = 0.85
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # new
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "noreply.chopchu.web@gmail.com"
+EMAIL_HOST_PASSWORD = 'Kotlet1233'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 """

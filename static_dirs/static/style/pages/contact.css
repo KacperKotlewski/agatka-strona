@@ -28,12 +28,21 @@
   }
 }
 
-#content {
-  height: calc(100vh - 15vh);
+#main #pageContent {
+  height: 85vh;
+  width: 100vw;
+  overflow-y: visible;
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  #main #pageContent {
+    height: 90vh;
+  }
 }
 
 #messageForm {
-  height: 90%;
+  height: 100%;
+  width: 100vw;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -87,9 +96,6 @@
 }
 
 @media (max-width: 750px), (orientation: portrait) {
-  #content {
-    height: calc(100vh - 10vh);
-  }
   #messageForm {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;

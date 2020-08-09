@@ -1,11 +1,20 @@
 @import "../settings";
 
-#content{
-    height: calc(100vh - #{$menuSize});
+#main{
+
+    #pageContent{
+        height: (100vh - ($menuSize));
+        @media (max-width : 750px), (orientation: portrait){
+            height: (100vh - ($portraitSize));
+        }
+        width: $width;
+        overflow-y: visible;
+    }
 }
 
 #messageForm{
-    height: 90%;
+    height: 100%;
+    width: $width;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 5vw;
@@ -43,9 +52,6 @@
     }
 }
 @media (max-width : 750px), (orientation: portrait) {
-    #content{
-        height: calc(100vh - #{$portraitSize});
-    }
     #messageForm{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
