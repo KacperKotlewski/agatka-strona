@@ -73,6 +73,11 @@
                             {% if not tab.show_icon_only %} {{tab.name}} {% endif %}
                         </a></li>
                     {% endfor %}
+                    {% if user.is_superuser %}
+                        <li><a href="/admin" {% if "admin" == page %}class='hovered'{% endif %}}>
+                            <i class='fas fa-user-cog'></i>
+                        </a></li>
+                    {% endif %}
                     <div><li id="settings">
                         <i class="icon-cog"></i>
                             <ul class="submenu">

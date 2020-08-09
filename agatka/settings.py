@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'contact',
     'images',
     'portfolio',
+    'better_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
