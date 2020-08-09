@@ -28,6 +28,8 @@ class MenuTab(models.Model):
     show_icon_only = models.BooleanField(default=False)
     is_a_logo = models.BooleanField(default=False)
     image_for_logo = models.ImageField(upload_to="logo", blank=True, null=True)
+    is_changing_with_darkmode = models.BooleanField(default=False)
+    alternative_darkmode_image_for_logo = models.ImageField(upload_to="logo", blank=True, null=True)
     to_new_tab = models.BooleanField(default=False)
     priority = models.DecimalField(default=0, decimal_places=0, max_digits=9999999)
     is_submenu = models.BooleanField(default=False)
@@ -42,6 +44,7 @@ class PagesSetting(models.Model):
     title = models.CharField(max_length=128, blank=True, null=True)
     main_text = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="logo", blank=True, null=True)
+    image2 = models.ImageField(upload_to="logo", blank=True, null=True)
 
     def __str__(self):
         return (str(self.page) + " settings")

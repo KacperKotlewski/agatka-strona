@@ -1,3 +1,7 @@
+
+var alternative_logo = null;
+var logo = null;
+
 function darkmodeSet(){
   if(!isDark){
     switchFromDark();
@@ -32,6 +36,11 @@ function switchFromDark() {
   $("#darkMode").removeClass('icon-sun-inv');
   $("#darkMode").addClass('icon-moon-inv');
   $("#darkModeSpan").text('Tryb ciemny');
+
+  if ( alternative_logo != null)
+  {
+    $("#logo").css("background-image", 'url(' + logo + ')');
+  }
 }
 
 function switchFromLight() {
@@ -48,6 +57,11 @@ function switchFromLight() {
   $("#darkMode").removeClass('icon-moon-inv');
   $("#darkMode").addClass('icon-sun-inv');
   $("#darkModeSpan").text('Tryb jasny');
+
+  if ( alternative_logo != null)
+  {
+    $("#logo").css("background-image", 'url(' + alternative_logo + ')');
+  }
 }
 
 

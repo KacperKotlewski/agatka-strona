@@ -4,14 +4,15 @@
 }
 
 #galleries{
+    -webkit-animation: fadein 1.5s;
     height: 50vh;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     @media (max-width : 750px), (orientation: portrait){
         height: calc(100vh - (#{$portraitSize}));
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
     }
 
     .photoGalleryMiniature{
@@ -27,11 +28,15 @@
                         width: 90%;
                         height: 120px;
                         font-size: 2.5em;
-                        @media (max-width : 1200px){
+                        @media (max-width : 1600px){
                             font-size: 2em;
                         }
-                        @media (max-width : 1000px){
+                        @media (max-width : 1300px){
                             font-size: 1.5em;
+                            height: 80px;
+                        }
+                        @media (max-width : 900px), (min-width:750px){
+                            font-size: 1.25em;
                             height: 80px;
                         }
                         @media (max-width : 750px), (orientation: portrait) {
@@ -55,6 +60,10 @@
         }
     }
 }
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
 section#imgGallery{
     div#images{
@@ -63,6 +72,7 @@ section#imgGallery{
         padding: $imgGalleryPadding;
 
         div.imgRow{
+            -webkit-animation: fadein 1s;
             display: grid;
             grid-template-rows: 1fr;
             grid-gap: $imgGalleryPadding;

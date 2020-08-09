@@ -9,7 +9,7 @@
 {% block content %}
 <div id="container">
     <section id="content">
-        <article id='images'>
+        <article id='images' class="images">
             <div class='image contain autofill'>
                 <div class='imgCanvas'><div class='imgContain'>
                     <div class='overlay'></div>
@@ -21,7 +21,28 @@
 
         <article id='aboutme'>
             <h2>{{settings.title}}</h2>
-            <span>{{settings.main_text}}</span>
+            <span>{{settings.main_text|linebreaks}}</span>
+        </article>
+        <article id='images2' class="images">
+            <div class='image contain autofill'>
+                <div class='imgCanvas'><div class='imgContain'>
+                    <div class='overlay'></div>
+                        <div class='picFill' style='background-image: url({{settings.image2.url}});'> </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article id='buttons' class="lightModeMenu">
+            <ul>
+                {% for tab in menu_tabs %}
+                    {% if tab.is_external_link %}
+                        <a href="{{tab.link}}" {% if tab.to_new_tab %}target="_blank"{% endif %}>
+                            {% if tab.font_awesome_icon != "" %} <i class='fab fa-{{tab.font_awesome_icon}}'></i> {% endif %}
+                            {% if not tab.show_icon_only %} {{tab.name}} {% endif %}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </article>
     </section>
     <script>

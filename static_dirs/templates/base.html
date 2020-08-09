@@ -56,7 +56,14 @@
     <div id="container">
     <div class="lightModeMenu" id="menuBar">
     <a href="/">
-                <div id="logo" class="picFill" style="background-image: url('{{logo.image_for_logo.url}}');"></div>
+                <div id="logo" class="picContain" style="background-image: url('{{logo.image_for_logo.url}}');"></div>
+                <script>
+                    logo = "{{logo.image_for_logo.url}}";
+                </script> 
+                {% if logo.is_changing_with_darkmode %} <script>
+                    var alternative_logo = "{{logo.alternative_darkmode_image_for_logo.url}}";
+                    console.log(alternative_logo);
+                </script> {% endif %}
                 </a>
                 <i onclick="menuBtn(this)" id="menubutton" class="icon-menu"></i>
                 <menu>
@@ -106,6 +113,15 @@
                 {% endfor %}
             </ul>
             <div id="main">
+               
+                {% block content %}
+                    404
+                {% endblock %}
+
+                
+                <footer>
+                    Made by Kacper Kotlewski
+                </footer>
 
                 
                 <script>
@@ -126,15 +142,6 @@
                     }
                     closeMsgBox();
                 </script>
-               
-                {% block content %}
-                    404
-                {% endblock %}
-
-                
-                <footer>
-                    Made by Kacper Kotlewski
-                </footer>
             </div>
         </div>
 

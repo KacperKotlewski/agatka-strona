@@ -29,11 +29,12 @@
 }
 
 #galleries {
+  -webkit-animation: fadein 1.5s;
   height: 50vh;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
 }
@@ -43,8 +44,8 @@
     height: calc(100vh - (10vh));
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-    -ms-grid-rows: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+    -ms-grid-rows: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -92,15 +93,22 @@
           justify-content: center;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
   #galleries .photoGalleryMiniature .image .imgCanvas div .overlay a .title {
     font-size: 2em;
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1300px) {
   #galleries .photoGalleryMiniature .image .imgCanvas div .overlay a .title {
     font-size: 1.5em;
+    height: 80px;
+  }
+}
+
+@media (max-width: 900px), (min-width: 750px) {
+  #galleries .photoGalleryMiniature .image .imgCanvas div .overlay a .title {
+    font-size: 1.25em;
     height: 80px;
   }
 }
@@ -117,6 +125,24 @@
   }
 }
 
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 section#imgGallery div#images {
   display: -ms-grid;
   display: grid;
@@ -125,6 +151,7 @@ section#imgGallery div#images {
 }
 
 section#imgGallery div#images div.imgRow {
+  -webkit-animation: fadein 1s;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr;
