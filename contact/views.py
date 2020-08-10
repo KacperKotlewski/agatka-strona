@@ -2,7 +2,7 @@ from agatka.useful import *
 from .forms import MailingForm
 from django.core.mail import *
 
-def Contact(request):    
+def Contact(request):
     ctx = set_navname("contact", base_context(request))
     ctx['form'] = MailingForm()
     TestMial(request, ctx)
@@ -16,10 +16,10 @@ def TestMial(request, ctx):
                 template = get_template("email_respond_to_agat.html")
                 context = {"message":form["message"].value(), "names" : form["names"].value(), "email" : form["email"].value() }
                 content = template.render(context)
-                
+
                 headers = {'Reply-To': form["email"].value()}
                 msg = EmailMessage(
-                    form["topic"].value(), 
+                    form["topic"].value(),
                     content,
                     "lyzewa2@gmail.com",
                     ["lyzewa2@gmail.com"],
@@ -28,9 +28,11 @@ def TestMial(request, ctx):
                 msg.content_subtype = "html"
                 msg.send()
                 messages.success(request, "Wysłano maila :D")
-                return
+                return 0
             except:
-                pass
+                messages.error(request, "Problem z requestem smtp")
+        else:
+            messages.error(request, "Problem z walidacją danych")
 
 
         ctx['form'] = form
