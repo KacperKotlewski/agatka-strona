@@ -8,10 +8,9 @@
 {% block content %}
 
 <section id="pageContent">
-    <div class="container d-flex justify-content-center">
-        <form method="POST" class="p-2 d-flex flex-column w-75" name="imageform" id="imageform">
+    <form id="add_new_group" enctype="multipart/form-data" class="container d-flex justify-content-center">
+        <div class="p-2 d-flex flex-column w-75" name="imageform" id="imageform">
             {% csrf_token %}
-            {% load converts  %}
 
             <div class="input-group card text-white bg-secondary mb-3">
                 <!-- kategoria -->
@@ -20,9 +19,9 @@
                         <label class="input-group-text" for="categories_select">Kategoria</label>
                     </div>
                     <select class="custom-select" id="categories_select" name="categories_select" onchange="GetCategory(this)">
-                        <option value="none" {% if categories_select == 'none' %} selected {% endif %}>Wybierz kategorie</option>
+                        <option value="none" selected>Wybierz kategorie</option>
                         {% for i in categories %}
-                            <option value="{{ i.id }}"  {% if categories_select|to_int == i.id %} selected {% endif %}>{{ i }}</option>
+                            <option value="{{ i.id }}">{{ i }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -34,11 +33,11 @@
 
             <!-- submit -->
             <div class="input-group">
-                <input type="submit" class="btn btn-secondary btn-lg p-2 col" value="Dodaj"/>
+                <buttn class="btn btn-secondary btn-lg p-2 col" onclick="Submit()">Dodaj</buttn>
                 <div class="col-1"></div>
                 <a href="admin/" class="col p-0 m-0"><div class="btn btn-secondary btn-lg p-2 w-100">wróć</div></a>
             </div>
-        </form>
+        </div>
 
         
     <script>
@@ -51,15 +50,7 @@
                 $('#group').css("display", "block")
 
                 data = {
-                    "category" : value, 
-                    "groups_select" : "{{groups_select}}",
-                    {% if groups_select == 'add_new' %}
-                    "visible_name" : "{{visible_name}}",
-                    "friendly_link" : "{{friendly_link}}",
-                    "relase_date" : "{{relase_date}}",
-                    "background_image" : "{{background_image}}",
-                    "display" : "{{display}}",
-                    {% endif %}
+                    "category" : value,
                 }
 
                 $.ajax({
@@ -73,7 +64,13 @@
             }
         }
         GetCategory(document.getElementById("categories_select"))
+
+        function Submit(){
+            if(typeof(Submit_new_group) === "function" && no_error){
+                Submit_new_group()
+            }
+        }
     </script>
-  </div>
+  </form>
 </section>
 {% endblock %}

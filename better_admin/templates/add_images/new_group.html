@@ -1,12 +1,8 @@
 
-{% if pure_html %}
-<form id="add_new_group"  class="px-2 d-flex flex-column w-100 form" name="add_new_group" method="GET">
+<form id="add_new_group"  class="px-2 d-flex flex-column w-100 form" name="add_new_group" method="POST"  enctype="multipart/form-data">
     {% csrf_token %}
-{% else %}
-<div id="add_new_group"  class="px-2 d-flex flex-column w-100 form" name="add_new_group">
     
 {% load converts  %}
-{% endif %}
     {% for field in form.visible_fields %}
         <div class="input-group mt-3">
             <div class="input-group-prepend">
@@ -21,39 +17,32 @@
     {% endfor %}
     
     {% for field in form.hidden_fields  %}
-    
-        {% if pure_html %}
-            {{field|visable:True}}
-        {% else %}
             {{field}}
-        {% endif %}
     {% endfor %}
-    <script>
-        // function GetCategory(element) {
-        //     var value = element.value;
-        //     $('#group').html("")
-        //     $('#group').css("display", "none")
-        //     if (value != "none")
-        //     {
-        //         $('#group').css("display", "block")
-    
-    
-        //         $.ajax({
-        //             type: 'GET',
-        //             url: '/images',
-        //             data: {"category" : value},
-        //             success: function (data) {
-        //                 let groups = data.groups;
-        //             }
-        //         });
-        //     }
-        // }
-    </script>
     
 {% if pure_html %}
-    <input type="hidden" name="pure_html" value="{{pure_html}}">
-    <input type="submit" value="ok">
-</form>
-{% else %}
-</div>
+    <input type="hidden" name="pure_html" value="{{pure_html}}"/>
+    <input type="submit" value="ok"/>
 {% endif %}
+</form>
+<script>
+    function Submit_new_group(){
+
+        $("#add_new_group").ajaxSubmit({
+            url: '/admin/add_images/new_group/',
+            type: 'POST',
+            success: function (data) {
+                if (data["html"] != "undefinted"){
+
+                    $('#add_new_group').html("");
+                    html = data.html;
+                    html = $(html).filter("#add_new_group").html()
+                    $('#add_new_group').html(html)
+                    $('#add_new_group').find("#id_cat").val($("#categories_select").val())
+                }
+            },
+            error: function() {
+            }
+        })
+    }
+</script>

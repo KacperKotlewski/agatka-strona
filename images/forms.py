@@ -20,12 +20,9 @@ class GroupForm(forms.ModelForm):
         label = "Link"
     )
     display = forms.BooleanField(
-        widget=forms.CheckboxInput(attrs={
-                'class' : ""
-            }),
+        widget=forms.CheckboxInput(),
         label = "Grupa ukryta",
-        required=False,
-        initial=""
+        required=False
     )
     relase_date = forms.DateTimeField(
         widget=forms.DateTimeInput(attrs={
@@ -34,6 +31,13 @@ class GroupForm(forms.ModelForm):
             }),
         initial = datetime.now,
         label = "Data wyświetlenia"
+    )
+    background_image = forms.FileField(
+        widget=forms.FileInput(attrs={
+                'class' : "form-control",
+                'autocomplete':'off'
+            }),
+        label = "Wybierz zdjęcia"
     )
     cat = forms.DecimalField(
         widget=forms.HiddenInput(),
@@ -69,28 +73,89 @@ class GroupForm(forms.ModelForm):
         category = Category.objects.filter(id=int(self.data.get("cat")))
         return category[0]
 
-    def save(self, commit=True, *args, **kwargs):
-        instance = super(GroupForm, self).save(commit=False)
-        if commit:
-            instance.save()
-        return instance
-
-class GroupForm2(forms.ModelForm):
-    class Meta:
-        model = Group
-        fields = ['background_image']
-
 
 
 class ImageForm(forms.ModelForm):
     visible_name = forms.CharField(
         widget=forms.TextInput(attrs={
                 'placeholder': 'Nazwa grupy zdjęć',
-                'class' : "form-control"
+                'class' : "form-control",
+                'autocomplete':'off'
             }),
         label = "Nazwa"
+    )
+    friendly_link = forms.CharField(
+        widget=forms.TextInput(attrs={
+                'placeholder': 'Przyjazny link',
+                'class' : "form-control",
+                'autocomplete':'off'
+            }),
+        label = "Link"
+    )
+    display = forms.BooleanField(
+        widget=forms.CheckboxInput(),
+        label = "Grupa ukryta",
+        required=False
+    )
+    relase_date = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={
+                'class' : "form-control",
+                'autocomplete':'off'
+            }),
+        initial = datetime.now,
+        label = "Data wyświetlenia"
+    )
+    image = forms.FileField(
+        widget=forms.FileInput(attrs={
+                'class' : "form-control",
+                'autocomplete':'off'
+            }),
+        label = "Wybierz zdjęcia"
+    )
+    cat = forms.DecimalField(
+        widget=forms.HiddenInput(),
+        label = False
+    )
+    grp = forms.DecimalField(
+        widget=forms.HiddenInput(),
+        label = False
+    )
+    category = forms.Field(
+        widget=forms.HiddenInput(),
+        required = False,
+        label = False
+    )
+    group = forms.Field(
+        widget=forms.HiddenInput(),
+        required = False,
+        label = False
     )
 
     class Meta:
         model = Image
-        fields = ['visible_name']
+        fields = ('visible_name', 'friendly_link', 'display', 'relase_date', 'image', 'category', 'group')
+
+    
+    def clean_friendly_link(self, *args, **kwargs):
+        friendly_link = self.cleaned_data["friendly_link"]
+        friendly_link = friendly_link.replace(" ", "-")
+        group = Category.objects.filter(id=self.data.get("grp"))
+
+        try:
+            image = Image.objects.filter(group=group, friendly_link=friendly_link)
+            if image.count != 0:
+                print("Taki link już istnieje w tej grupie") 
+                raise forms.ValidationError("Taki link już istnieje w tej grupie") 
+
+        except:
+            pass
+        print("Taki link nie istnieje w tej kategorii") 
+        return friendly_link
+
+    def clean_category(self, *args, **kwargs):
+        category = Category.objects.filter(id=int(self.data.get("cat")))
+        return category[0]
+
+    def clean_group(self, *args, **kwargs):
+        group = Group.objects.filter(id=int(self.data.get("grp")))
+        return group[0]
