@@ -21,7 +21,8 @@ class GroupForm(forms.ModelForm):
     )
     display = forms.BooleanField(
         widget=forms.CheckboxInput(),
-        label = "Grupa ukryta",
+        label = "Grupa widoczna",
+        initial=True,
         required=False
     )
     relase_date = forms.DateTimeField(
@@ -94,7 +95,8 @@ class ImageForm(forms.ModelForm):
     )
     display = forms.BooleanField(
         widget=forms.CheckboxInput(),
-        label = "Grupa ukryta",
+        label = "Grupa widoczna",
+        initial=True,
         required=False
     )
     relase_date = forms.DateTimeField(
