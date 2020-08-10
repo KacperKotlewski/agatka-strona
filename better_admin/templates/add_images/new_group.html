@@ -41,13 +41,13 @@
             url: '/admin/add_images/new_group/',
             type: 'POST',
             success: function (data) {
-                if (data["html"] != "undefinted"){
+                if (typeof(data["html"]) != "undefined"){
                     $('#add_new_group').html("");
                     html = $(data.html).filter("#add_new_group").html()
                     $('#add_new_group').html(html)
                     $('#add_new_group').filter("#id_cat").val($("#categories_select").val())
-                }else if (data["success"]){
-                    GetCategory(document.getElementById("categories_select"))
+                }else {
+                    GetCategory(document.getElementById("categories_select"), to="none")
                 }                
             },
             error: function() {

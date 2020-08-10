@@ -23,6 +23,14 @@ def AddImages(request):
     else:
         ctx = set_navname("add_images", base_context(request))
         ctx["categories"] = imagesForms.Category.objects.all()
+    
+        ctx["categories_select"] = "none"
+        ctx["groups_select"] = "none"
+        if request.method == "POST":
+            for item in request.method.items():
+                print(item)
+            ctx["categories_select"] = request.POST.get("categories_select", "none")
+            ctx["groups_select"] = request.POST.get("groups_select", "none")
         return render(request, "add_images/main.html", ctx)
 
 
@@ -33,6 +41,9 @@ def GetGroups(request):
         cat = imagesForms.Category.objects.filter(id=category)[0]
         grp = imagesForms.Group.objects.filter(category=cat)
         ctx = {"groups":grp}
+        ctx["groups_select"] = "none"
+        if request.method == "POST":
+            ctx["groups_select"] = request.POST.get("groups_select", "none")
 
         template = get_template("add_images/get_groups.html")
         content = template.render(ctx)

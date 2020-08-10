@@ -4,12 +4,14 @@
     </div>
     <select class="custom-select" id="groups_select"  name="groups_select" onchange="GetGroup(this)">
         {% load converts  %}
-        <option value="none" selected>Wybierz grupe</option>
-        <option value="add_new">Dodaj nową</option>
+        <option value="none"  {% if groups_select == "none" %} selected {% endif %}>Wybierz grupe</option>
+        <option value="add_new"  {% if groups_select == "add_new" %} selected {% endif %}>Dodaj nową</option>
         {% for i in groups %}
-            <option value="{{ i.id }}">"{{ i.visible_name }}"</option>
+            <option value="{{ i.id }}" {% if groups_select|to_int == i.id %} selected {% endif %}>"{{ i.visible_name }}"</option>
         {% endfor %}
     </select>
+    <span>
+        {{groups_select}}</span>
 
     <div id="new_group" class="input-group card text-white bg-secondary" style="display: none;">
         <!-- nowa grupa -->
@@ -66,33 +68,11 @@
     }
     GetGroup(document.getElementById("groups_select"))
 
-    function SelectImages(element) {
-        var value = element.value;
-        $('#images').css("display", "none")
-        $('#images').html('')
-        var fileInput = document.getElementById ("files");
-        if ('files' in fileInput) {
-            if (fileInput.files.length != 0) {
-                for (var i = 0; i < fileInput.files.length; i++) {
-                    var file = fileInput.files[i];
-
-                    console.log(file);
-                    var data
-
-                    $.ajax({
-                        type: 'GET',
-                        url: '/admin/add_images/new_image',
-                        data: data,
-                        beforeSend: function(jqXHR, settings) {
-                            console.log(settings.url)
-                        },
-                        success: function (data) {
-                            $('#images').append(data.html)
-                        }
-                    });
-                }
-            }
-        }
+    function GetImages(element) {
+        
+    }
+    function SaveImages(element) {
+        
     }
 </script>
 </div>
