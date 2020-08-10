@@ -18,7 +18,7 @@ class Group(models.Model):
     friendly_link = models.CharField(max_length=128)
     display = models.BooleanField(default=True)
     relase_date = models.DateTimeField()
-    background_image = models.FileField(upload_to="pics/images")
+    background_image = models.FileField(upload_to="pics/images", blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
