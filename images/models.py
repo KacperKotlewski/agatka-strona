@@ -38,3 +38,8 @@ class Image(models.Model):
         return groups
     def __str__(self):
         return "''"+self.visible_name + "'' z grupy " +str(self.group)
+
+    def create(self, **kwargs):
+        obj = self.model(**kwargs)
+        self._for_write = True
+        return obj

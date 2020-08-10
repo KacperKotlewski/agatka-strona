@@ -16,17 +16,13 @@
     <div id="new_group" class="input-group card text-white bg-secondary" style="display: none;">
         <!-- nowa grupa -->
     </div>
-    <div class="input-group mt-3" id="add_images" style="display: none;">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="files">Wybierz zdjęcia</label>
-            </div>
-            <input id="files" type="file" name="files" class="form-control" accept="image/*" multiple onchange="SelectImages(this)"/>
-        </div>
-    </div>
 
-    <div id="images" class="input-group card text-white bg-secondary" style="display: none;">
-        <!-- zdjęcia -->
+    <div class="input-group mt-3" id="images_holder" style="display: none;">
+        <div class="input-group mt-3" id="images">
+        </div>
+        <div class="input-group mt-3">
+            <buttn class="btn btn-light btn-lg p-2 col" onclick="AddImageForm(document.getElementById('images'))">Dodaj nowy formularz do zdjęcia</buttn>
+        </div>
     </div>
 
 <script>
@@ -34,10 +30,9 @@
         var value = element.value;
         $('#new_group').html("")
         $('#new_group').css("display", "none")
-        $('#images').html("")
-        $('#images').css("display", "none")
-        $('#add_images').css("display", "none")
+        $('#images_holder').css("display", "none")
         $('#files').val('')
+        $('#images').html('')
         console.log(value);
         if (value != "none")
         {
@@ -62,17 +57,52 @@
                 });
             }
             else{
-                $('#add_images').css("display", "block")
+                $('#images_holder').css("display", "block")
             }
         }
     }
     GetGroup(document.getElementById("groups_select"))
 
-    function GetImages(element) {
-        
+    var id = 0
+
+    function AddImageForm(element) {
+        $.ajax({
+            type: 'GET',
+            url: '/admin/add_images/new_image',
+            data: data,
+            beforeSend: function(jqXHR, settings) {
+                console.log(settings.url)
+            },
+            success: function (data) {
+                let div = '<div class="input-group mt-3" id="image_'+id+'"</div>';
+                $('#images').append(div)
+                $('#image_'+id).append(data.html)
+                
+                $('#image_'+id).find("#id_visible_name").val(id)
+                $('#image_'+id).find("#id_friendly_link").val(id)
+                $('#image_'+id).find("#id_cat").val($("#categories_select").val())
+                $('#image_'+id).find("#id_grp").val($("#groups_select").val())
+            }
+        });
     }
-    function SaveImages(element) {
+    GetGroup(document.getElementById("groups_select"))
+
+    
+
+    function SaveImages() {
         
+        $("#images form").each(function( index ){
+            console.log(this);
+            $(this).ajaxSubmit({
+                url: '/admin/add_images/new_image/',
+                type: 'POST',
+                success: function (data) {
+                    $(this).html(data.html)
+                },
+                error: function() {
+                }
+            })
+        })
     }
 </script>
 </div>

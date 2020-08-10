@@ -1,7 +1,9 @@
 from agatka.useful import *
-import images.models as imagesForms
+import images.models as imagesModels
 import images.forms as imagesForms
+import django.forms as modelsformset_factory
 from django.core.files.storage import FileSystemStorage
+from django.core.files.uploadedfile import SimpleUploadedFile
         
 from django.views.decorators.csrf import csrf_exempt
 
@@ -27,12 +29,16 @@ def AddImages(request):
         ctx["categories_select"] = "none"
         ctx["groups_select"] = "none"
         if request.method == "POST":
-            for item in request.method.items():
-                print(item)
+            if request.FILES:
+                upload_book(request)
+                #SaveFiles(request.FILES, request.POST)
+
             ctx["categories_select"] = request.POST.get("categories_select", "none")
             ctx["groups_select"] = request.POST.get("groups_select", "none")
+            template = get_template("add_images/main.html")
+            content = template.render(ctx)
+            return JsonResponse({"html":content})
         return render(request, "add_images/main.html", ctx)
-
 
 @csrf_exempt
 def GetGroups(request):
@@ -45,17 +51,25 @@ def GetGroups(request):
         if request.method == "POST":
             ctx["groups_select"] = request.POST.get("groups_select", "none")
 
+        ctx["img_form"] = imagesForms.ImageForm2()
         template = get_template("add_images/get_groups.html")
         content = template.render(ctx)
         return JsonResponse({"html":content})
 
+@csrf_exempt
 def NewImage(request):
-    if request.method == 'GET':
-        for target_list in request.GET.items():
-            print(target_list)
+    if request.user.is_superuser:
+        form = imagesForms.ImageForm()
         ctx = {}
-        # ctx["img"] = request.GET["file"]
-
+        if request.method == 'POST':
+            form = imagesForms.ImageForm(data=request.POST, files=request.FILES)
+            if form.is_valid():
+                print("is_valid")
+                print(form.save())
+                return JsonResponse({"success":True})
+            print(form.save())
+            
+        ctx['form'] = form
         template = get_template("add_images/new_image.html")
         content = template.render(ctx)
         return JsonResponse({"html":content})
