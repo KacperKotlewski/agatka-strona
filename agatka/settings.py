@@ -132,7 +132,7 @@ STATIC_URL = f'/{static_str}/'
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, static_str)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, static_str),
+    os.path.join(BASE_DIR, "static_dirs"),
 ]
 
 media_str = "static_dirs/media"
