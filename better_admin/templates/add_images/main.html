@@ -8,7 +8,7 @@
 {% block content %}
 
 <section id="pageContent">
-    <form id="add_new_group" enctype="multipart/form-data" class="container d-flex justify-content-center">
+    <form enctype="multipart/form-data" class="container d-flex justify-content-center">
         <div class="p-2 d-flex flex-column w-75" name="imageform" id="imageform">
             {% csrf_token %}
 
@@ -66,7 +66,7 @@
         GetCategory(document.getElementById("categories_select"))
 
         function Submit(){
-            if(typeof(Submit_new_group) === "function" && no_error){
+            if(typeof(Submit_new_group) === "function"){
                 Submit_new_group()
             }
         }
