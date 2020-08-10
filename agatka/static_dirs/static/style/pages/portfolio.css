@@ -1,0 +1,191 @@
+@-webkit-keyframes loadingRotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  12.5% {
+    -webkit-transform: rotate(45deg);
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+  }
+  37.5% {
+    -webkit-transform: rotate(135deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  62.5% {
+    -webkit-transform: rotate(225deg);
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+  }
+  87.5% {
+    -webkit-transform: rotate(315deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+#galleries {
+  -webkit-animation: fadein 1.5s;
+  height: 50vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  #galleries {
+    height: calc(100vh - (10vh));
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    -ms-grid-rows: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+}
+
+#galleries .photoGalleryMiniature .image .imgCanvas div .overlay {
+  background-color: rgba(51, 51, 51, 0.7);
+}
+
+#galleries .photoGalleryMiniature .image .imgCanvas div .overlay a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#galleries .photoGalleryMiniature .image .imgCanvas div .overlay a .title {
+  width: 90%;
+  height: 120px;
+  font-size: 2.5em;
+  color: #ddd;
+  text-align: center;
+  background-color: rgba(51, 51, 51, 0);
+  padding: 0px 10px;
+  border: 0.1em solid #ddd;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 1600px) {
+  #galleries .photoGalleryMiniature .image .imgCanvas div .overlay a .title {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 1300px) {
+  #galleries .photoGalleryMiniature .image .imgCanvas div .overlay a .title {
+    font-size: 1.5em;
+    height: 80px;
+  }
+}
+
+@media (max-width: 900px), (min-width: 750px) {
+  #galleries .photoGalleryMiniature .image .imgCanvas div .overlay a .title {
+    font-size: 1.25em;
+    height: 80px;
+  }
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  #galleries .photoGalleryMiniature .image .imgCanvas div .overlay a .title {
+    width: 50%;
+  }
+}
+
+@media (max-width: 450px) {
+  #galleries .photoGalleryMiniature .image .imgCanvas div .overlay a .title {
+    width: 70%;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+section#imgGallery div#images {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 3vw;
+  padding: 3vw;
+}
+
+section#imgGallery div#images div.imgRow {
+  -webkit-animation: fadein 1s;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  grid-gap: 3vw;
+  height: calc(33.3vw - (3vw *4/3));
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  section#imgGallery div#images div.imgRow {
+    height: calc(50vw - (3vw *4/3));
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+section#imgGallery div#loadingCircle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 3vw;
+}
+
+section#imgGallery div#loadingCircle i {
+  font-size: 4em;
+  -webkit-animation: loadingRotation 1s infinite;
+}
+
+section#imgGallery div#loadingCircle span {
+  font-size: 2em;
+}
+/*# sourceMappingURL=portfolio.css.map */

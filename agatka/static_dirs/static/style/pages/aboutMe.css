@@ -1,0 +1,189 @@
+@-webkit-keyframes loadingRotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  12.5% {
+    -webkit-transform: rotate(45deg);
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+  }
+  37.5% {
+    -webkit-transform: rotate(135deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  62.5% {
+    -webkit-transform: rotate(225deg);
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+  }
+  87.5% {
+    -webkit-transform: rotate(315deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+#content {
+  height: calc(100vh - 15vh - calc(2*5vw));
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@media (min-width: 850px) and (orientation: landscape) {
+  #content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.666) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.666);
+        grid-template-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.666) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.666);
+    grid-row: 1fr auto;
+    grid-gap: 5vw 5vw;
+    margin: 5vw 7vw;
+        grid-template-areas: "image text image" "none buttons none";
+  }
+}
+
+@media (max-width: 850px), (orientation: portrait) {
+  #content {
+    height: auto;
+    margin-left: calc(calc(100vw - calc(100vh - 15vh)*0.666)/2);
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: calc(100vh - 15vh) auto auto calc(100vh - 15vh);
+        grid-template-rows: calc(100vh - 15vh) auto auto calc(100vh - 15vh);
+    -ms-grid-columns: calc(calc(100vh - 15vh)*0.666);
+        grid-template-columns: calc(calc(100vh - 15vh)*0.666);
+    grid-gap: 5vw;
+        grid-template-areas: "image" "text" "image";
+  }
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  #content {
+    margin-left: calc(calc(100vw - calc(100vw - 10vh)*0.666)/2);
+    -ms-grid-rows: calc(100vw - 10vh) auto auto calc(100vw - 10vh);
+        grid-template-rows: calc(100vw - 10vh) auto auto calc(100vw - 10vh);
+    -ms-grid-columns: calc(calc(100vw - 10vh)*0.666);
+        grid-template-columns: calc(calc(100vw - 10vh)*0.666);
+        grid-template-areas: "image" "text" "image";
+  }
+}
+
+.images {
+  height: auto;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#aboutme {
+  height: 100%;
+  grid-area: "text";
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 1fr auto;
+      grid-template-columns: auto 1fr auto;
+  -ms-grid-rows: auto 1fr;
+      grid-template-rows: auto 1fr;
+  font-size: 1em;
+  text-align: center;
+}
+
+@media (max-width: 850px), (orientation: portrait) {
+  #aboutme {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+#aboutme h2 {
+  padding-bottom: 2vh;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
+#aboutme span {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
+#buttons {
+  width: 100%;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  font-size: 3em;
+}
+
+@media (max-width: 850px), (orientation: portrait) {
+  #buttons {
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
+    grid-row: 3/4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1/2;
+  }
+}
+
+#buttons ul {
+  padding: 0px;
+  margin: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#buttons li {
+  padding: 0px;
+  padding-right: 25px;
+  padding-left: 25px;
+  margin: 0px;
+  list-style: none;
+}
+
+#buttons li a, #buttons li i {
+  text-decoration: none;
+}
+
+#buttons li i {
+  position: relative;
+  display: inline-block;
+  padding: 7px;
+}
+
+#buttons li:hover {
+  cursor: pointer;
+}
+
+#buttons li:hover a, #buttons li:hover i {
+  cursor: pointer;
+}
+/*# sourceMappingURL=aboutMe.css.map */

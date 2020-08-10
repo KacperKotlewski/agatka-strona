@@ -1,0 +1,110 @@
+@import "../settings";
+
+#content{
+    height: calc(100vh - #{$menuSize} - calc(2*5vw));
+    @media (min-width : 850px) and (orientation: landscape){
+        display: grid;
+        grid-template-columns: calc(calc(100vh - #{$menuSize} - calc(2*5vw))*0.666) 4fr calc(calc(100vh - #{$menuSize} - calc(2*5vw))*0.666) ;
+        grid-row: 1fr auto;
+        grid-gap: 5vw 5vw;
+        margin: 5vw 7vw;
+        grid-template-areas: 
+          "image text image"
+          "none buttons none"
+    }
+    @media (max-width : 850px), (orientation: portrait){
+        height: auto;
+        margin-left: calc(calc(100vw - calc(100vh - #{$menuSize})*0.666)/2);
+        display: grid;
+        grid-template-rows: calc(100vh - #{$menuSize}) auto auto calc(100vh - #{$menuSize});
+        grid-template-columns: calc(calc(100vh - #{$menuSize})*0.666);
+        grid-gap: 5vw;
+        grid-template-areas: 
+          "image"
+          "text"
+          "image";
+    }
+    @media (max-width : 750px), (orientation: portrait) {
+        margin-left: calc(calc(100vw - calc(100vw - #{$portraitSize})*0.666)/2);
+        grid-template-rows: calc(100vw - #{$portraitSize}) auto auto calc(100vw - #{$portraitSize});
+        grid-template-columns: calc(calc(100vw - #{$portraitSize})*0.666);
+        grid-template-areas: 
+          "image"
+          "text"
+          "image";
+    }
+    box-sizing: border-box;
+}
+
+.images{
+    height: auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#aboutme{
+    height: 100%;
+    grid-area: "text";
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr;
+    @media (max-width : 850px), (orientation: portrait){
+        text-align: center;
+        width: 100%;
+    }
+    @media (max-width : 750px), (orientation: portrait) {
+    }
+    font-size: 1em;
+    text-align: center;
+    h2{
+        padding-bottom: 2vh;
+        grid-column: 2/3;
+    }
+    span{
+        grid-column: 2/3;
+    }
+}
+
+#buttons{
+    width: 100%;
+    grid-row: 2/3;
+    grid-column: 2/3;
+    @media (max-width : 850px), (orientation: portrait){
+        grid-row: 3/4;
+        grid-column: 1/2;
+    }
+    ul{
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+        align-content: center;
+        justify-content: space-around;
+        align-items: center;
+    }
+    font-size: 3em;
+    li{
+        padding: 0px;
+        padding-right: ($spaceBetweenButtons/2);
+        padding-left: ($spaceBetweenButtons/2);
+        margin: 0px;
+        list-style: none;
+        a, i{
+            text-decoration: none;
+        }
+        i{
+            position: relative;
+            display: inline-block;
+            padding:7px;
+        }
+        &:hover{
+            cursor: pointer;
+            a, i{
+                cursor: pointer;
+            }
+        }
+    }
+}
