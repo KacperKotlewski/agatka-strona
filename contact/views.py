@@ -1,7 +1,6 @@
 from agatka.useful import *
-from .fields import MailingForm
+from .forms import MailingForm
 from django.core.mail import *
-from django.template.loader import get_template
 
 def Contact(request):    
     ctx = set_navname("contact", base_context(request))

@@ -1,0 +1,90 @@
+<div class="input-group mt-3 px-1">
+    <div class="input-group-prepend">
+        <label class="input-group-text" for="groups_select">Grupa</label>
+    </div>
+    <select class="custom-select" id="groups_select"  name="groups_select" onchange="GetGroup(this)">
+        {% load converts  %}
+        <option value="none" {% if groups_select == 'none' %} selected {% endif %}>Wybierz grupe</option>
+        <option value="add_new" {% if groups_select == 'add_new' %} selected {% endif %}>Dodaj nową</option>
+        {% for i in groups %}
+            <option value="{{ i.id }}" {% if groups_select|to_int == i.id %} selected {% endif %}>"{{ i.visible_name }}"</option>
+        {% endfor %}
+    </select>
+
+    <div id="new_group" class="input-group card text-white bg-secondary" style="display: none;">
+        <!-- nowa grupa -->
+    </div>
+    <div class="input-group mt-3" id="add_images" style="display: none;">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="files">Wybierz zdjęcia</label>
+            </div>
+            <input id="files" type="file" name="files" class="form-control" accept="image/*" multiple onchange="SelectImages(this)"/>
+        </div>
+    </div>
+
+    <div id="images" class="input-group card text-white bg-secondary" style="display: none;">
+        <!-- zdjęcia -->
+    </div>
+
+<script>
+    function GetGroup(element) {
+        var value = element.value;
+        $('#new_group').html("")
+        $('#new_group').css("display", "none")
+        $('#images').html("")
+        $('#images').css("display", "none")
+        $('#add_images').css("display", "none")
+        $('#files').val('')
+        console.log(value);
+        if (value != "none")
+        {
+            $('#add_images').css("display", "block")
+
+            if (value == "add_new")
+            {
+                $('#new_group').css("display", "block")
+
+                data = {
+                    {% if groups_select == 'add_new' %}
+                    "visible_name" : "{{visible_name}}",
+                    "friendly_link" : "{{friendly_link}}",
+                    "relase_date" : "{{relase_date}}",
+                    "background_image" : "{{background_image}}",
+                    "display" : "{{display}}",
+                    {% endif %}
+                }
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/admin/add_images/new_group',
+                    data: data,
+                    beforeSend: function(jqXHR, settings) {
+                        console.log(settings.url)
+                    },
+                    success: function (data) {
+                        $('#new_group').html(data.html)
+                        $('#new_group').find("#id_cat").val($("#categories_select").val())
+                    }
+                });
+            }
+        }
+    }
+    GetGroup(document.getElementById("groups_select"))
+
+    function SelectImages(element) {
+        var value = element.value;
+        $('#images').css("display", "none")
+        $('#images').html('')
+        var fileInput = document.getElementById ("files");
+        if ('files' in fileInput) {
+            if (fileInput.files.length != 0) {
+                for (var i = 0; i < fileInput.files.length; i++) {
+                    var file = fileInput.files[i];
+                    console.log(file);
+                }
+            }
+        }
+    }
+</script>
+</div>

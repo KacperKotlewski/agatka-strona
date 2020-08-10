@@ -1,0 +1,19 @@
+<div id="add_new"  class="px-2 d-flex flex-column w-100 form">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+        <div class="input-group mt-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text pt-0 pb-0">{{field.label }}</div>
+            </div>
+            {% if field == form.display %}
+            <div class="form-control">{{field}}</div>
+            {% else %}
+                {{field}}
+            {% endif %}
+        </div>
+    {% endfor %}
+    
+    {% for field in form.hidden_fields  %}
+        {{field}}
+    {% endfor %}
+</div>

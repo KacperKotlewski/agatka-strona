@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+<!-- {% block title %}{{ section.title }}{% endblock %} -->
+
+{% block additional_include %}
+    {% load static %}
+{% endblock %}
+{% block content %}
+
+<section id="pageContent">
+    <div class="container d-flex justify-content-center">
+        <form method="POST" class="p-2 d-flex flex-column w-75" name="imageform" id="imageform">
+            {% csrf_token %}
+            {% load converts  %}
+
+            <div class="input-group card text-white bg-secondary mb-3">
+                <!-- kategoria -->
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="categories_select">Kategoria</label>
+                    </div>
+                    <select class="custom-select" id="categories_select" name="categories_select" onchange="GetCategory(this)">
+                        <option value="none" {% if categories_select == 'none' %} selected {% endif %}>Wybierz kategorie</option>
+                        {% for i in categories %}
+                            <option value="{{ i.id }}"  {% if categories_select|to_int == i.id %} selected {% endif %}>{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="group" class="input-group card text-white bg-secondary" style="display: none;">
+                    <!-- group -->
+                </div>
+            </div>
+
+            <!-- submit -->
+            <div class="input-group">
+                <input type="submit" class="btn btn-secondary btn-lg p-2 col" value="Dodaj"/>
+                <div class="col-1"></div>
+                <a href="admin/" class="col p-0 m-0"><div class="btn btn-secondary btn-lg p-2 w-100">wróć</div></a>
+            </div>
+        </form>
+
+        
+    <script>
+        function GetCategory(element) {
+            var value = element.value;
+            $('#group').html("")
+            $('#group').css("display", "none")
+            if (value != "none")
+            {
+                $('#group').css("display", "block")
+
+                data = {
+                    "category" : value, 
+                    "groups_select" : "{{groups_select}}",
+                    {% if groups_select == 'add_new' %}
+                    "visible_name" : "{{visible_name}}",
+                    "friendly_link" : "{{friendly_link}}",
+                    "relase_date" : "{{relase_date}}",
+                    "background_image" : "{{background_image}}",
+                    "display" : "{{display}}",
+                    {% endif %}
+                }
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/admin/add_images/get_groups',
+                    data: data,
+                    success: function (data) {
+                        $('#group').html(data.html)
+                    }
+                });
+            }
+        }
+        GetCategory(document.getElementById("categories_select"))
+    </script>
+  </div>
+</section>
+{% endblock %}

@@ -4,7 +4,7 @@ from django.db import models
 
 class Category(models.Model):
     visible_name = models.CharField(max_length=128, blank=True, null=True)
-    friendly_link = models.CharField(max_length=128)
+    friendly_link = models.CharField(max_length=128, unique=True)
     display = models.BooleanField(default=True)
     display_as_category = models.BooleanField(default=True)
     relase_date = models.DateTimeField()
@@ -18,7 +18,7 @@ class Group(models.Model):
     friendly_link = models.CharField(max_length=128)
     display = models.BooleanField(default=True)
     relase_date = models.DateTimeField()
-    background_image = models.ImageField(upload_to="pics/images", blank=True, null=True)
+    background_image = models.FileField(upload_to="pics/images")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):

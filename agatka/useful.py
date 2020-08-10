@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.template import RequestContext
 from django.contrib import messages
 from .settings import MEDIA_ROOT
+from django.template.loader import get_template
 
 def base_context(request):
     isDark = request.COOKIES['isDark'] if ('isDark' in request.COOKIES) else False

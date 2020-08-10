@@ -1,0 +1,59 @@
+
+{% if pure_html %}
+<form id="add_new_group"  class="px-2 d-flex flex-column w-100 form" name="add_new_group" method="GET">
+    {% csrf_token %}
+{% else %}
+<div id="add_new_group"  class="px-2 d-flex flex-column w-100 form" name="add_new_group">
+    
+{% load converts  %}
+{% endif %}
+    {% for field in form.visible_fields %}
+        <div class="input-group mt-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text pt-0 pb-0">{{field.label}}</div>
+            </div>
+            {% if field == form.display %}
+                <div class="form-control">{{field}}</div>
+            {% else %}
+                {{field}}
+            {% endif %}
+        </div>
+    {% endfor %}
+    
+    {% for field in form.hidden_fields  %}
+    
+        {% if pure_html %}
+            {{field|visable:True}}
+        {% else %}
+            {{field}}
+        {% endif %}
+    {% endfor %}
+    <script>
+        // function GetCategory(element) {
+        //     var value = element.value;
+        //     $('#group').html("")
+        //     $('#group').css("display", "none")
+        //     if (value != "none")
+        //     {
+        //         $('#group').css("display", "block")
+    
+    
+        //         $.ajax({
+        //             type: 'GET',
+        //             url: '/images',
+        //             data: {"category" : value},
+        //             success: function (data) {
+        //                 let groups = data.groups;
+        //             }
+        //         });
+        //     }
+        // }
+    </script>
+    
+{% if pure_html %}
+    <input type="hidden" name="pure_html" value="{{pure_html}}">
+    <input type="submit" value="ok">
+</form>
+{% else %}
+</div>
+{% endif %}
