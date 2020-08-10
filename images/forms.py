@@ -35,7 +35,8 @@ class GroupForm(forms.ModelForm):
     background_image = forms.FileField(
         widget=forms.FileInput(attrs={
                 'class' : "form-control",
-                'autocomplete':'off'
+                'autocomplete':'off',
+                "accept":"image/*"
             }),
         label = "Wybierz zdjęcia"
     )
@@ -66,7 +67,6 @@ class GroupForm(forms.ModelForm):
 
         except:
             pass
-        print("Taki link nie istnieje w tej kategorii") 
         return friendly_link
 
     def clean_category(self, *args, **kwargs):
@@ -108,7 +108,8 @@ class ImageForm(forms.ModelForm):
     image = forms.FileField(
         widget=forms.FileInput(attrs={
                 'class' : "form-control",
-                'autocomplete':'off'
+                'autocomplete':'off',
+                "accept":"image/*"
             }),
         label = "Wybierz zdjęcia"
     )

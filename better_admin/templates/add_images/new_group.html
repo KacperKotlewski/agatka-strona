@@ -5,14 +5,13 @@
 {% load converts  %}
     {% for field in form.visible_fields %}
         <div class="input-group mt-3">
-            <div class="input-group mt-3">
-                {% for error in field.errors %}
-                <div class="alert alert-danger">
-                    <strong>{{ error|escape }}</strong>
+            {% for error in field.errors %}
+            <div class="input-group mb-1">
+                <div class="form-control alert-danger">{{ error|escape }}
                 </div>
             </div>
-            <div class="input-group mt-3">
-                {% endfor %}
+            {% endfor %}
+            <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text pt-0 pb-0">{{field.label}}</div>
                 </div>
