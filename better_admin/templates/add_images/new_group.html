@@ -46,7 +46,9 @@
                     html = $(data.html).filter("#add_new_group").html()
                     $('#add_new_group').html(html)
                     $('#add_new_group').filter("#id_cat").val($("#categories_select").val())
-                }
+                }else if (data["success"]){
+                    GetCategory(document.getElementById("categories_select"))
+                }                
             },
             error: function() {
             }
