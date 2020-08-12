@@ -77,6 +77,14 @@ class GroupForm(forms.ModelForm):
 
 
 class ImageForm(forms.ModelForm):
+    image = forms.FileField(
+        widget=forms.FileInput(attrs={
+                'class' : "form-control",
+                'autocomplete':'off',
+                "accept":"image/*"
+            }),
+        label = "Wybierz zdjęcia"
+    )
 
     cat = forms.DecimalField(
         widget=forms.HiddenInput(),
@@ -96,12 +104,14 @@ class ImageForm(forms.ModelForm):
         required = False,
         label = False
     )
+    friendly_link = forms.CharField(
+        widget=forms.HiddenInput(),
+        required = False,
+    )
 
     visible_name = forms.CharField(
-        widget=forms.HiddenInput()
-    )
-    friendly_link = forms.CharField(
-        widget=forms.HiddenInput()
+        widget=forms.HiddenInput(),
+        required = False,
     )
     display = forms.BooleanField(
         widget=forms.HiddenInput(),
@@ -109,38 +119,40 @@ class ImageForm(forms.ModelForm):
     )
     relase_date = forms.DateTimeField(
         widget=forms.HiddenInput(),
-        initial = datetime.now
-    )
-    image = forms.FileField(
-        widget=forms.FileInput(attrs={
-                'class' : "form-control",
-                'autocomplete':'off',
-                "accept":"image/*"
-            }),
-        label = "Wybierz zdjęcia"
+        initial = datetime.now,
     )
 
     class Meta:
         model = Image
-        fields = ('visible_name', 'friendly_link', 'display', 'relase_date', 'image', 'category', 'group')
+        fields = ('image', 'friendly_link', 'visible_name', 'display', 'relase_date', "category", "group")
 
 
     def clean_category(self, *args, **kwargs):
-        category = Category.objects.filter(id=int(self.data.get("cat")))
+        category = Category.objects.filter(id=int(self.data["cat"]))
         return category[0]
 
     def clean_group(self, *args, **kwargs):
-        group = Group.objects.filter(id=int(self.data.get("grp")))
+        group = Group.objects.filter(id=int(self.data["grp"]))
         return group[0]
     
     def clean_friendly_link(self, *args, **kwargs):
-        friendly_link = self.cleaned_data["friendly_link"]
-        friendly_link = friendly_link.replace(" ", "-")
+        friendly_link = self.data.get("friendly_link")
+        if friendly_link == "":
+            friendly_link = str(self.cleaned_data.get("image").name.split(".")[0])
+        friendly_link = friendly_link.replace(" ", "_")
         group = Group.objects.filter(id=self.data.get("grp"))[0]
-        for i in range(99):
-            image = Image.objects.filter(group=group, friendly_link=(friendly_link+str(i)))
-            if image.count == 0:
+        
+        last_i = ""
+        for i in range(99999):
+            print("friendly_link:'",friendly_link+last_i,"'")
+            image = Image.objects.filter(group=group, friendly_link=(friendly_link+last_i))
+            if image.count() == 0:
                 return friendly_link
+            last_i = str(i)
+
+    def clean_visible_name(self, *args, **kwargs):
+        visible_name = self.cleaned_data.get("friendly_link")
+        return visible_name
 
 
 class ImageForm2(forms.ModelForm):

@@ -29,9 +29,6 @@ def AddImages(request):
         ctx["categories_select"] = "none"
         ctx["groups_select"] = "none"
         if request.method == "POST":
-            if request.FILES:
-                upload_book(request)
-                #SaveFiles(request.FILES, request.POST)
 
             ctx["categories_select"] = request.POST.get("categories_select", "none")
             ctx["groups_select"] = request.POST.get("groups_select", "none")
@@ -64,10 +61,16 @@ def NewImage(request):
         if request.method == 'POST':
             form = imagesForms.ImageForm(data=request.POST, files=request.FILES)
             if form.is_valid():
-                print("is_valid")
-                print(form.save())
+                form.save()
+                messages.success(request, "Dodano zdjęcie")
                 return JsonResponse({"success":True})
-            print(form.save())
+            else:
+                messages.error(request, "Nie udało się dodać zdjęcia, spróbuj jeszcze raz lub skontaktuj się z deweloperem strony")
+                try:
+                    form.save()
+                except Exception as e:
+                    messages.error(request, "Error" + str(e))
+
             
         ctx['form'] = form
         template = get_template("add_images/new_image.html")
@@ -82,9 +85,15 @@ def NewGroup(request):
         if request.method == 'POST':
             form = imagesForms.GroupForm(data=request.POST, files=request.FILES)
             if form.is_valid():
-                print("is_valid")
-                print(form.save())
+                form.save()
+                messages.success(request, "Stworzono nową grupe")
                 return JsonResponse({"success":True})
+            else:
+                messages.error(request, "Nie udało się utworzyć grupy, spróbuj jeszcze raz lub skontaktuj się z deweloperem strony")
+                try:
+                    form.save()
+                except Exception as e:
+                    messages.error(request, "Error" + str(e))
             
         ctx['form'] = form
         template_link ="add_images/new_group.html"

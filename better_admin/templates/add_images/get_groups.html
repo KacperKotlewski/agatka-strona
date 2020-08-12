@@ -10,15 +10,13 @@
             <option value="{{ i.id }}" {% if groups_select|to_int == i.id %} selected {% endif %}>"{{ i.visible_name }}"</option>
         {% endfor %}
     </select>
-    <span>
-        {{groups_select}}</span>
 
     <div id="new_group" class="input-group card text-white bg-secondary" style="display: none;">
         <!-- nowa grupa -->
     </div>
 
-    <div class="input-group mt-3" id="images_holder" style="display: none;">
-        <div class="input-group mt-3" id="images">
+    <div class="input-group" id="images_holder" style="display: none;">
+        <div class="input-group" id="images">
         </div>
         <div class="input-group mt-3">
             <buttn class="btn btn-light btn-lg p-2 col" onclick="AddImageForm(document.getElementById('images'))">Dodaj nowy formularz do zdjęcia</buttn>
@@ -33,7 +31,6 @@
         $('#images_holder').css("display", "none")
         $('#files').val('')
         $('#images').html('')
-        console.log(value);
         if (value != "none")
         {
             if (value == "add_new")
@@ -74,14 +71,10 @@
                 console.log(settings.url)
             },
             success: function (data) {
-                let div = '<div class="input-group mt-3" id="image_'+id+'"</div>';
-                $('#images').append(div)
-                $('#image_'+id).append(data.html)
-                
-                $('#image_'+id).find("#id_visible_name").val(id)
-                $('#image_'+id).find("#id_friendly_link").val(id)
-                $('#image_'+id).find("#id_cat").val($("#categories_select").val())
-                $('#image_'+id).find("#id_grp").val($("#groups_select").val())
+                html = $(data.html);
+                $(html).find("#id_cat").val($("#categories_select").val());
+                $(html).find("#id_grp").val($("#groups_select").val());
+                $('#images').append(html);
             }
         });
     }
@@ -93,11 +86,16 @@
         
         $("#images form").each(function( index ){
             console.log(this);
+            temp_this = $(this)
             $(this).ajaxSubmit({
                 url: '/admin/add_images/new_image/',
                 type: 'POST',
                 success: function (data) {
-                    $(this).html(data.html)
+                    console.log(data);
+                    $(temp_this).html(data.html)
+                    if (data.success == true){
+                        $(temp_this).remove()
+                    }
                 },
                 error: function() {
                 }

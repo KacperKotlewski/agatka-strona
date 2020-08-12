@@ -114,14 +114,8 @@
                 {% if show_title %}<header><h1>{{title}}</h1></header>{% endif %}
             </div>
             <div id="menuback"></div>
-            <ul id="messages" class="messages">
-                {% for message in messages %}
-                {% if message.tags == "error" %}
-                    <li{% if message.tags %} class="alert alert-danger"{% endif %}><span>{{ message }}</span><i class="fas fa-times-circle" onclick="closeMessage(this);"></i></li>
-                {% else %}
-                    <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}><span>{{ message }}</span><i class="fas fa-times-circle" onclick="closeMessage(this);"></i></li>
-                {% endif %} 
-                {% endfor %}
+            <ul id="messages" class="messages" style="margin: 0px;">
+                {% include "messages.html" %}
             </ul>
             <div id="main">
                
@@ -143,15 +137,7 @@
                     function closeMessage(elem){
                         msg = elem.parentElement;
                         msg.parentNode.removeChild(msg);
-                        closeMsgBox();
                     }
-                    function closeMsgBox(){
-                        msgbox = document.getElementById("messages");
-                        if(msgbox.childElementCount == 0){
-                            msgbox.parentNode.removeChild(msgbox);
-                        }
-                    }
-                    closeMsgBox();
                 </script>
             </div>
         </div>
