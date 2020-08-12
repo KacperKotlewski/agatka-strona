@@ -41,16 +41,23 @@
             url: '/admin/add_images/new_group/',
             type: 'POST',
             success: function (data) {
-                if (typeof(data["html"]) != "undefined"){
-                    $('#add_new_group').html("");
-                    html = $(data.html).filter("#add_new_group").html()
-                    $('#add_new_group').html(html)
-                    $('#add_new_group').filter("#id_cat").val($("#categories_select").val())
-                }else {
-                    GetCategory(document.getElementById("categories_select"), to="none")
-                }                
+                $('#add_new_group').html("");
+                html = $(data.html).filter("#add_new_group").html()
+                $('#add_new_group').html(html)
+                $('#add_new_group').filter("#id_cat").val($("#categories_select").val())
+                if (data.success == true){
+                    // val = $("#categories_select").val()
+                    // $("#categories_select").val("none")
+                    // console.log($("#categories_select").val());
+                    // console.log(val);
+                    // $("#categories_select").val(val)
+                    // GetCategory(document.getElementById("categories_select"), to=val)
+                    location.reload()
+                }
+                getMesseges()
             },
-            error: function() {
+            error: function () {
+                getMesseges()
             }
         })
     }

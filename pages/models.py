@@ -1,4 +1,9 @@
 from django.db import models
+import os
+import uuid
+
+from django.dispatch import receiver
+from django.utils.translation import ugettext_lazy as _
 
 
 class Page(models.Model):
@@ -48,3 +53,55 @@ class PagesSetting(models.Model):
 
     def __str__(self):
         return (str(self.page) + " settings")
+
+
+
+
+@receiver(models.signals.post_delete, sender=MenuTab)
+@receiver(models.signals.post_delete, sender=PagesSetting)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    if sender == MenuTab:
+        if instance.image_for_logo:
+            if os.path.isfile(instance.image_for_logo.path):
+                os.remove(instance.image_for_logo.path)
+        if instance.alternative_darkmode_image_for_logo:
+            if os.path.isfile(instance.alternative_darkmode_image_for_logo.path):
+                os.remove(instance.alternative_darkmode_image_for_logo.path)
+
+    elif sender == PagesSetting:
+        if instance.image:
+            if os.path.isfile(instance.image.path):
+                os.remove(instance.image.path)
+        if instance.image2:
+            if os.path.isfile(instance.image2.path):
+                os.remove(instance.image2.path)
+
+@receiver(models.signals.pre_save, sender=MenuTab)
+@receiver(models.signals.pre_save, sender=PagesSetting)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    if not instance.pk:
+        return False
+
+    try:
+        if sender == MenuTab:
+            old_file1 = sender.objects.get(pk=instance.pk).image_for_logo
+            old_file2 = sender.objects.get(pk=instance.pk).alternative_darkmode_image_for_logo
+        elif sender == PagesSetting:
+            old_file1 = sender.objects.get(pk=instance.pk).image
+            old_file2 = sender.objects.get(pk=instance.pk).image2
+    except sender.DoesNotExist:
+        return False
+
+    if sender == MenuTab:
+        new_file1 = instance.image_for_logo
+        new_file2 = instance.alternative_darkmode_image_for_logo
+    elif sender == PagesSetting:
+        new_file1 = instance.image
+        new_file2 = instance.image2
+
+    if not old_file1 == new_file1:
+        if os.path.isfile(old_file.path):
+            os.remove(old_file.path)
+    if not old_file2 == new_file2:
+        if os.path.isfile(old_file.path):
+            os.remove(old_file.path)
