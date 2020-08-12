@@ -138,6 +138,34 @@
                         msg = elem.parentElement;
                         msg.parentNode.removeChild(msg);
                     }
+
+                    function getMesseges() {
+                        if (request_send > 1){
+                            if($("#connection_error").length == 0){
+                                connection_error = '<li class="alert alert-danger" id = "connection_error"><span>problem z połączeniem</span><i class="fas fa-times-circle" onclick="closeMessage(this);"></i></li>';
+                                $('#messages').append(connection_error)
+                                $('#connection_success').remove()
+                            }
+                        }else if($("#connection_error").length != 0){
+                            $('#connection_error').remove()
+                                connection_success = '<li class="alert alert-success" id = "connection_success"><span>serwer znowu odpowiada</span><i class="fas fa-times-circle" onclick="closeMessage(this);"></i></li>';
+                                $('#messages').append(connection_success)
+                        }
+                        $.ajax({
+                            type: 'GET',
+                            url: '/messeges',
+                            success: function (data) {
+                                $('#messages').append(data.html)
+                                request_send = 0
+                            }
+                        });
+                    }
+                    var request_send = 0;
+                    
+                    function setMesseges() {
+                        setInterval(function(){ request_send += 1; getMesseges() }, 30000);
+                    }
+                    setMesseges()
                 </script>
             </div>
         </div>

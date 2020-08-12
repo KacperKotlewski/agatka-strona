@@ -44,12 +44,13 @@
                     type: 'GET',
                     url: '/admin/add_images/new_group',
                     data: data,
-                    beforeSend: function(jqXHR, settings) {
-                        console.log(settings.url)
-                    },
                     success: function (data) {
                         $('#new_group').html(data.html)
                         $('#new_group').find("#id_cat").val($("#categories_select").val())
+                        getMesseges()
+                    },
+                    error: function () {
+                        getMesseges()
                     }
                 });
             }
@@ -67,9 +68,6 @@
             type: 'GET',
             url: '/admin/add_images/new_image',
             data: data,
-            beforeSend: function(jqXHR, settings) {
-                console.log(settings.url)
-            },
             success: function (data) {
                 html = $(data.html);
                 $(html).find("#id_cat").val($("#categories_select").val());
@@ -85,21 +83,24 @@
     function SaveImages() {
         
         $("#images form").each(function( index ){
-            console.log(this);
             temp_this = $(this)
-            $(this).ajaxSubmit({
-                url: '/admin/add_images/new_image/',
-                type: 'POST',
-                success: function (data) {
-                    console.log(data);
-                    $(temp_this).html(data.html)
-                    if (data.success == true){
-                        $(temp_this).remove()
+            if ($(this).find("#id_image").val() != "")
+                $(this).ajaxSubmit({
+                    url: '/admin/add_images/new_image/',
+                    type: 'POST',
+                    success: function (data) {
+                        $(temp_this).html(data.html)
+                        if (data.success == true){
+                            $(temp_this).remove()
+                        }
+                        getMesseges()
+                    },
+                    error: function () {
+                        getMesseges()
                     }
-                },
-                error: function() {
-                }
-            })
+                })
+            else 
+                $(temp_this).remove()
         })
     }
 </script>
