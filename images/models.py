@@ -84,10 +84,13 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
     except sender.DoesNotExist:
         return False
 
-    if sender == Image:
-        new_file = instance.image
-    else:
-        new_file = instance.background_image
-    if not old_file == new_file:
-        if os.path.isfile(old_file.path):
-            os.remove(old_file.path)
+        if sender == Image:
+            new_file = instance.image
+        else:
+            new_file = instance.background_image
+    try:
+        if not old_file == new_file:
+            if os.path.isfile(old_file.path):
+                os.remove(old_file.path)
+    except:
+        pass
