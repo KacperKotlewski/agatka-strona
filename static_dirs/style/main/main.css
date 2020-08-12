@@ -62,12 +62,21 @@ html, body {
       grid-template-columns: 1fr;
   -ms-grid-rows: minmax(50vh, auto) auto;
       grid-template-rows: minmax(50vh, auto) auto;
+  -ms-grid-rows: minmax(85vh, auto) auto;
+      grid-template-rows: minmax(85vh, auto) auto;
 }
 
 @media (max-width: 750px), (orientation: portrait) {
   #main {
     -ms-grid-rows: minmax(50vh, auto) auto;
         grid-template-rows: minmax(50vh, auto) auto;
+  }
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  #main {
+    -ms-grid-rows: minmax(90vh, auto) auto;
+        grid-template-rows: minmax(90vh, auto) auto;
   }
 }
 
@@ -113,6 +122,7 @@ html, body {
 
 ul.messages {
   padding: 0px;
+  margin: 0px;
 }
 
 ul.messages li.alert {

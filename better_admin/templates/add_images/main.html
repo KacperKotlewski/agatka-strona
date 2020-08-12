@@ -8,9 +8,10 @@
 {% block content %}
 
 <section id="pageContent">
-    <form id="add_new_group" enctype="multipart/form-data" class="container d-flex justify-content-center">
+    <form id="main_form" enctype="multipart/form-data" class="container d-flex justify-content-center">
         <div class="p-2 d-flex flex-column w-75" name="imageform" id="imageform">
             {% csrf_token %}
+            {% load converts %}
 
             <div class="input-group card text-white bg-secondary mb-3">
                 <!-- kategoria -->
@@ -19,9 +20,9 @@
                         <label class="input-group-text" for="categories_select">Kategoria</label>
                     </div>
                     <select class="custom-select" id="categories_select" name="categories_select" onchange="GetCategory(this)">
-                        <option value="none" selected>Wybierz kategorie</option>
+                        <option value="none" {% if categories_select == "none" %} selected {% endif %}>Wybierz kategorie</option>
                         {% for i in categories %}
-                            <option value="{{ i.id }}">{{ i }}</option>
+                            <option value="{{ i.id }}" {% if categories_select|to_int == i.id %} selected {% endif %}>{{ i }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -41,16 +42,16 @@
 
         
     <script>
-        function GetCategory(element) {
+        function GetCategory(element, to="") {
             var value = element.value;
             $('#group').html("")
             $('#group').css("display", "none")
             if (value != "none")
             {
                 $('#group').css("display", "block")
-
                 data = {
                     "category" : value,
+                    "groups_select" :"{{groups_select}}",
                 }
 
                 $.ajax({
@@ -66,11 +67,18 @@
         GetCategory(document.getElementById("categories_select"))
 
         function Submit(){
-            if(typeof(Submit_new_group) === "function" && no_error){
+            if(typeof(Submit_new_group) === "function"){
                 Submit_new_group()
-            }
+            } else if(typeof(SaveImages) === "function"){
+                SaveImages()
+            } 
         }
     </script>
   </form>
+  <script>
+    function reloadPage(){
+        location.reload(); 
+    }
+  </script>
 </section>
 {% endblock %}

@@ -31,6 +31,10 @@ html, body{
     @media (max-width : 750px), (orientation: portrait){
       grid-template-rows: minmax(50vh, auto) auto;
     }
+    grid-template-rows: minmax((100vh - ($menuSize)), auto) auto;
+    @media (max-width : 750px), (orientation: portrait){
+      grid-template-rows: minmax((100vh - ($portraitSize)), auto) auto;
+    }
 
     footer{
         grid-row: 2/3;
@@ -61,6 +65,7 @@ html, body{
 
 ul.messages{
   padding: 0px;
+  margin: 0px;
   li.alert{
     list-style: none;
     display: grid;

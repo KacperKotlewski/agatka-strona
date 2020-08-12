@@ -1,0 +1,7 @@
+{% for message in messages %}
+    {% if message.tags == "error" %}
+        <li{% if message.tags %} class="alert alert-danger"{% endif %}><span>{{ message }}</span><i class="fas fa-times-circle" onclick="closeMessage(this);"></i></li>
+    {% else %}
+        <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}><span>{{ message }}</span><i class="fas fa-times-circle" onclick="closeMessage(this);"></i></li>
+    {% endif %} 
+{% endfor %}

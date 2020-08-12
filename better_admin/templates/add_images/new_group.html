@@ -5,14 +5,23 @@
 {% load converts  %}
     {% for field in form.visible_fields %}
         <div class="input-group mt-3">
-            <div class="input-group-prepend">
-                <div class="input-group-text pt-0 pb-0">{{field.label}}</div>
+            {% for error in field.errors %}
+            <div class="input-group mb-1">
+                <div class="form-control alert-danger">{{ error|escape }}
+                </div>
             </div>
-            {% if field == form.display %}
-                <div class="form-control">{{field}}</div>
-            {% else %}
-                {{field}}
-            {% endif %}
+            {% endfor %}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text pt-0 pb-0">{{field.label}}</div>
+                </div>
+                {% if field == form.display %}
+                    <div class="form-control">{{field}}</div>
+                {% else %}
+                    {{field}}
+                {% endif %}
+                
+            </div>
         </div>
     {% endfor %}
     
@@ -32,16 +41,23 @@
             url: '/admin/add_images/new_group/',
             type: 'POST',
             success: function (data) {
-                if (data["html"] != "undefinted"){
-
-                    $('#add_new_group').html("");
-                    html = data.html;
-                    html = $(html).filter("#add_new_group").html()
-                    $('#add_new_group').html(html)
-                    $('#add_new_group').find("#id_cat").val($("#categories_select").val())
+                $('#add_new_group').html("");
+                html = $(data.html).filter("#add_new_group").html()
+                $('#add_new_group').html(html)
+                $('#add_new_group').filter("#id_cat").val($("#categories_select").val())
+                if (data.success == true){
+                    // val = $("#categories_select").val()
+                    // $("#categories_select").val("none")
+                    // console.log($("#categories_select").val());
+                    // console.log(val);
+                    // $("#categories_select").val(val)
+                    // GetCategory(document.getElementById("categories_select"), to=val)
+                    location.reload()
                 }
+                getMesseges()
             },
-            error: function() {
+            error: function () {
+                getMesseges()
             }
         })
     }

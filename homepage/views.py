@@ -16,5 +16,10 @@ def SetDarkMode(request):
     response.set_cookie(key='isDark', value=request.GET['isDark'])
     return response
 
+def Messeges(request):
+    template = get_template("messages.html")
+    content = template.render({}, request=request)
+    return JsonResponse({"html":content})
+
 def view_404(request, exception=None):
     return redirect('/')

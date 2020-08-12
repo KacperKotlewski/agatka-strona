@@ -1,6 +1,4 @@
 <form id="add_new_image"  class="px-2 d-flex flex-column w-100 form" name="add_new_group" method="POST"  enctype="multipart/form-data">
-    {% csrf_token %}
-    {{img}}
     {% for field in form.visible_fields %}
         <div class="input-group mt-3">
             <div class="input-group-prepend">
