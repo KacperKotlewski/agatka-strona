@@ -90,8 +90,8 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
             new_file = instance.background_image
     try:
         if not (not old_file):
-        if not old_file == new_file:
-            if os.path.isfile(old_file.path):
-                os.remove(old_file.path)
+            if not old_file == new_file:
+                if os.path.isfile(old_file.path):
+                    os.remove(old_file.path)
     except:
         pass
