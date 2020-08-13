@@ -8,12 +8,14 @@ function isMobile() {
 
 function addToCarusel(item, index){
     var articles = "";
+    var i = 0;
     item.forEach(pic => {
-        articles += "<article><div class='image autofill hoverZoom1x25 hoverGreyout'>"+
+        articles += "<article id='article_"+i+"'><div class='image autofill hoverZoom1x25 hoverGreyout'>"+
         "<div class='imgCanvas'><div class='imgContain'>"+
         "<div class='overlay pointer' onclick='fullscreenImage("+index+")'></div>"+
         "<div id='picture"+index+"' class='picFill' style='background-image: url(" + pic.url +");'></div>"+
         "</div></div></div></article>";
+        i -= -1;
     });
     $('#carouselMain').append('<div class=\"carousel-item '+ (index==0?'active':'') + ' sliderPart\">'
     +

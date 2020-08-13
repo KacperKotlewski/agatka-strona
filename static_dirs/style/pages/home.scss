@@ -37,11 +37,13 @@
         
         @media (orientation: landscape) and (min-width:750px){
             grid-template-columns: ($width*0.33333) ($width*0.33333) ($width*0.33333);
+            
         }
         @media (orientation: portrait), (max-width : 750px){
             grid-template-columns: ($width);
         }
     }
+    
     article{
         width: 100%;
         height: 100%;
