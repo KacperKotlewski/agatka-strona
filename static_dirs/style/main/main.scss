@@ -11,6 +11,7 @@ html, body{
     font-family: 'Exo 2', sans-serif;
     scrollbar-width: none;
 }
+
 .semiTransparentMenu{
     background-color: rgba($menuBgColor, 0.5);
 }
@@ -93,7 +94,9 @@ outline:none;
 }
 
 
-
+#carouselMiniButtons{
+  z-index: 8;
+}
 
 .slidecontainer {
     width: 100%; /* Width of the outside container */
@@ -137,30 +140,81 @@ outline:none;
   }
 
 
+
+
 #imageFullscreen{
-  position: fixed;
+  position: absolute;
+  top:0;
+  left:0;
   width: 100%;
   height: 100%;
-  background-color: rgba($menuBgColor, 0.3);
-  z-index:11;
-  visibility: hidden;
-  #imgGrid{
+  z-index: 11;
+  display: none;
+
+  #imgGrids{
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 12;
+    background-color: rgba($menuBgColor, 0.2);
+    #imageContainer2{
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      z-index: 13;
+    }
+  }
+  #galleryGrid{
+    position: absolute;
+    $gap : 5vw;
+    $size :  calc((100vw)/4);
+    height: 100%;
+    #imageContainer1{
+      height: 100%;
+      background-color: rgba($menuBgColor, 0.2);
+      #imgGallery{
+        margin-top: $gap * 1.2;
+        width: 100%;
+        display: grid;
+        // grid-gap: $gap;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        div{
+          height: $size;
+        }
+      }
+      
+    }
+  }
+  #fullscreeen_container{
     position: relative;
     width: 100%;
-    height: 100%;
-    #close{
-      position: absolute;
+    height: 100vh;
+    
+    .close{
+      position: fixed;
       top: 8px;
       right: 16px;
       font-size: 3em;
       cursor: pointer;
+      z-index: 20;
     }
-    #imageContainer{
+
+    .imgGrid{
       width: 100%;
       height: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
+      visibility: hidden;
+      width: 100%;
+      .grid{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        .imageContainer{
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
   }
+  
 }

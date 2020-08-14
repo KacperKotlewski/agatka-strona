@@ -12,8 +12,8 @@ function addToCarusel(item, index){
     item.forEach(pic => {
         articles += "<article id='article_"+i+"'><div class='image autofill hoverZoom1x25 hoverGreyout'>"+
         "<div class='imgCanvas'><div class='imgContain'>"+
-        "<div class='overlay pointer' onclick='fullscreenImage("+index+")'></div>"+
-        "<div id='picture"+index+"' class='picFill' style='background-image: url(" + pic.url +");'></div>"+
+        "<div class='overlay pointer' onclick='fullscreenGroupGallery("+pic.id+")'></div>"+
+        "<div id='picture"+pic.id+"' class='picFill' style='background-image: url(" + pic.url +");'></div>"+
         "</div></div></div></article>";
         i -= -1;
     });
@@ -72,10 +72,10 @@ function repeatStringNumTimes(string, times) {
 function SetArray(){
     $.ajax({
         type: 'GET',
-        url: 'images',
+        url: '/images_from_groups',
         data: {'count' : 9},
         success: function (data) {
-            imageArray = data.imgs;
+            imageArray = data.grps;
             initCrousel(mediaMaches);
         }
     });

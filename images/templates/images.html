@@ -1,0 +1,18 @@
+
+<section id="imgGallery">
+    {% load static %}
+    {% for image in imgs %}
+    <div>
+        <div class="image autofill hoverZoom1x25 hoverGreyout" id="img_gal_obj">
+            <div id="image_{{image.id}}" class="imgCanvas">
+                <div class="imgContain">
+                    <div class="overlay pointer" onclick="fullscreenImage({{image.id}})">
+                    </div>
+                    <div class="picFill" id="picture{{image.id}}" style="background-image: url('{{image.url}}');">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
