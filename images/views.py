@@ -10,7 +10,7 @@ def Images(request, image, category="none", group="none"):
     return JsonResponse(ctx)
 
 def GetGroupGallery(request):
-    ctx={}
+    ctx={"imgs":[]}
     if request.method == 'GET' and 'group':
         group = models.Group.objects.get(id=request.GET["id"])
 
@@ -21,6 +21,9 @@ def GetGroupGallery(request):
 
 
         ctx = {"imgs":images}
+
+    if(len(ctx["imgs"]) == 0):
+        return JsonResponse({"fail":"No images"})
     template_link ="images.html"
     template = get_template(template_link )
     content = template.render(ctx)

@@ -29,12 +29,16 @@ function fullscreenGroupGallery(id){
         data: {'id' : id},
         success: function (data) {
             $("#imageFullscreen").css({"display": "block"});
-            var item1 = $("#imageFullscreen").find("#galleryGrid")[ 0 ];
-            var item2 = $(item1).find("#imageContainer1")[0];
-            $(item2).append(data.html)
-            $(item1).css({"visibility": "visible"})
-            var img = $(item2).find(".image")
-            console.log(img);
+            if (data["fail"] == "No images"){
+                fullscreenImage(id)
+            } else{
+                var item1 = $("#imageFullscreen").find("#galleryGrid")[ 0 ];
+                var item2 = $(item1).find("#imageContainer1")[0];
+                $(item2).append(data.html)
+                $(item1).css({"visibility": "visible"})
+                var img = $(item2).find(".image")
+                console.log(img);
+            }
         }
     });
 }
