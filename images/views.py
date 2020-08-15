@@ -90,7 +90,6 @@ def filterImages(category=None, group=None, image=None):
 
 def GetGroups(request):
     category = request.GET["category"] if request.method == 'GET' and 'category' in request.GET else None
-    group = request.GET["group"] if request.method == 'GET' and 'group' in request.GET else None
     count = int(request.GET["count"]) if request.method == 'GET' and 'count' in request.GET else 1
     start_at = int(request.GET["start_at"]) if request.method == 'GET' and 'start_at' in request.GET else 0
 

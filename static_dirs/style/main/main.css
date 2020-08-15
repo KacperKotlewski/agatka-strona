@@ -243,16 +243,26 @@ body::-webkit-scrollbar-thumb {
 
 #imageFullscreen #galleryGrid #imageContainer1 {
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 5.2vw;
 }
 
 #imageFullscreen #galleryGrid #imageContainer1 #imgGallery {
-  margin-top: 6vw;
   width: 100%;
   display: -ms-grid;
   display: grid;
+  grid-gap: 2vw;
   -ms-grid-columns: 1fr 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  #imageFullscreen #galleryGrid #imageContainer1 #imgGallery {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    padding-top: 14vw;
+  }
 }
 
 #imageFullscreen #galleryGrid #imageContainer1 #imgGallery div {

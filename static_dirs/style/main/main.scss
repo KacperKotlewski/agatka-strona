@@ -166,19 +166,23 @@ outline:none;
   }
   #galleryGrid{
     position: absolute;
-    $gap : 5vw;
+    $gap : 2vw;
     $size :  calc((100vw)/4);
     height: 100%;
     #imageContainer1{
       height: 100%;
-      background-color: rgba($menuBgColor, 0.2);
+      padding-left: $gap;
+      padding-right: $gap;
+      padding-top: $gap * 2.6;
       #imgGallery{
-        margin-top: $gap * 1.2;
         width: 100%;
         display: grid;
-        // grid-gap: $gap;
+        grid-gap: $gap;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-
+        @media (max-width : 750px), (orientation: portrait){
+          grid-template-columns: 1fr 1fr;
+          padding-top: $gap * 7;
+        }
         div{
           height: $size;
         }

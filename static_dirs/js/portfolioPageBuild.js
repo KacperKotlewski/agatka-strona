@@ -8,41 +8,23 @@ function ajaxGetImages(cat=null){
     data = {'count' : how_many_load_at_once, "start_at" : lastImgCount};
     lastImgCount = count;
 
-    if(cat != null){
+    if(cat != null)
         data['category'] = cat;
-        $.ajax({
-            type: 'GET',
-            url: '/images_from_groups',
-            data: data,
-            success: function (data) {
-                console.log(data);
-                photoArrayPortfolio = photoArrayPortfolio.concat(data.grps);
-                c = data.grps.length
-                if(c == 0) {
-                    empty_loading();
-                    c = null;
-                }
-                buildPage(mediaMaches, load_only=c, galleryOnClick=true);
+    $.ajax({
+        type: 'GET',
+        url: '/images_from_groups',
+        data: data,
+        success: function (data) {
+            console.log(data);
+            photoArrayPortfolio = photoArrayPortfolio.concat(data.grps);
+            c = data.grps.length
+            if(c == 0) {
+                empty_loading();
+                c = null;
             }
-        });
-    }
-    else{
-        $.ajax({
-            type: 'GET',
-            url: '/images',
-            data: data,
-            success: function (data) {
-                photoArrayPortfolio = photoArrayPortfolio.concat(data.imgs);
-                c = data.imgs.length
-                if(c == 0) {
-                    empty_loading();
-                    c = null;
-                }
-                buildPage(mediaMaches, load_only=c);
-            }
-        });
-    }
-    
+            buildPage(mediaMaches, load_only=c, galleryOnClick=true);
+        }
+    });    
 }
 
 function empty_loading(){

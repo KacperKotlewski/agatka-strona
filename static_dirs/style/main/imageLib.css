@@ -28,7 +28,26 @@
   }
 }
 
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 div.image {
+  -webkit-animation: fadein 1.5s;
   position: relative;
   width: 100%;
 }
