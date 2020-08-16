@@ -180,7 +180,7 @@ div.image .imgCanvas .imgContain .overlay a, div.image .imgCanvas .imgContain .o
 }
 
 div.image .imgCanvas .imgContain .overlay div.gallery_name {
-  font-size: 4em;
+  font-size: 3em;
   -webkit-transition: all .5s;
   transition: all .5s;
   height: 100%;
@@ -197,5 +197,9 @@ div.image .imgCanvas .imgContain .overlay div.gallery_name {
       -ms-flex-align: end;
           align-items: flex-end;
   opacity: 0;
+}
+
+div.image .imgCanvas .imgContain .overlay div.gallery_name span {
+  text-align: center;
 }
 /*# sourceMappingURL=imageLib.css.map */

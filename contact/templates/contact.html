@@ -8,27 +8,34 @@
 {% endblock %}
 {% block content %}
 
+{% load static %}
 <section id="pageContent">
-    <form id="messageForm" method="POST">
-        {% csrf_token %}
-        {{form.captcha}}
-        <div class="halfOfForm">
-            {% for field in form %}
-                {% if field != form.message and field != form.captcha %}
+    <div class='image contain autofill imgCanvas imgContain'>
+        <div class="picFill" style='background-image: url({{settings.image.url}});'>
+            <div style="height: 100%;">
+        <form id="messageForm" method="POST">
+            {% csrf_token %}
+            {{form.captcha}}
+            <div class="halfOfForm">
+                {% for field in form %}
+                    {% if field != form.message and field != form.captcha %}
+                    <div class="formSection">
+                        {{field.label_tag }}
+                        {{field}}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="halfOfForm" id="secHalfOfForm">
                 <div class="formSection">
                     {{form.message.label_tag }}
-                    {{field}}
-                </div>
-                {% endif %}
-            {% endfor %}
+                    {{form.message}}
+                </div> 
+                <input type="submit" id="submit" value="Wyślij wiadomość"/>
+            </div>
+        </form>
+            </div>
         </div>
-        <div class="halfOfForm" id="secHalfOfForm">
-            <div class="formSection">
-                {{form.message.label_tag }}
-                {{form.message}}
-            </div> 
-            <input type="submit" id="submit" value="Wyślij wiadomość"/>
-        </div>
-    </form>
+    </div>
 </section>
 {% endblock %}

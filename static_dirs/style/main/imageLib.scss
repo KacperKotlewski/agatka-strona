@@ -113,7 +113,7 @@ div.image {
             }
             
             div.gallery_name {
-                font-size: 4em;
+                font-size: 3em;
                 transition: all .5s;
                 height: 100%;
                 width: 100%;
@@ -123,6 +123,9 @@ div.image {
                 justify-content: center;
                 align-items: flex-end;
                 opacity:0;
+                span{
+                    text-align: center;
+                }
             }
         }
     }
