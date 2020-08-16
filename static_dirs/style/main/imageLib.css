@@ -97,6 +97,10 @@ div.image.hoverGreyout:hover .imgCanvas .imgContain .overlay {
   background-color: rgba(51, 51, 51, 0.5);
 }
 
+div.image.hoverGreyout:hover .imgCanvas .imgContain .overlay div.gallery_name {
+  opacity: 1;
+}
+
 div.image.hoverblur:hover .imgCanvas .imgContain .picFill {
   -webkit-filter: blur(8px);
           filter: blur(8px);
@@ -173,5 +177,25 @@ div.image .imgCanvas .imgContain .overlay a, div.image .imgCanvas .imgContain .o
   color: #ddd;
   text-align: center;
   text-decoration: none;
+}
+
+div.image .imgCanvas .imgContain .overlay div.gallery_name {
+  font-size: 4em;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  height: 100%;
+  width: 100%;
+  color: #ddd;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-decoration: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  opacity: 0;
 }
 /*# sourceMappingURL=imageLib.css.map */

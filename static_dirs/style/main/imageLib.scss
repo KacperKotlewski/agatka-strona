@@ -41,6 +41,10 @@ div.image {
     }
     &.hoverGreyout:hover .imgCanvas .imgContain .overlay{
         background-color: rgba($color: #333, $alpha: 0.5);
+        
+        div.gallery_name {
+            opacity:1;
+        }
     }
     &.hoverblur:hover .imgCanvas .imgContain .picFill {
         filter: blur(8px);
@@ -106,6 +110,19 @@ div.image {
                 color: $darktextColor;
                 text-align: center;
                 text-decoration: none;
+            }
+            
+            div.gallery_name {
+                font-size: 4em;
+                transition: all .5s;
+                height: 100%;
+                width: 100%;
+                color: $darktextColor;
+                display: flex;
+                text-decoration: none;
+                justify-content: center;
+                align-items: flex-end;
+                opacity:0;
             }
         }
     }

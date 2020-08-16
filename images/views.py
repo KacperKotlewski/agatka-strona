@@ -110,7 +110,7 @@ def GetGroups(request):
         if len(grps) <= i:
             break
         else:
-            groups.append({"id":grps[i].id,"url":grps[i].background_image.url})
+            groups.append({"id":grps[i].id,"url":grps[i].background_image.url,"name":grps[i].visible_name})
 
     ctx = {"grps":groups}
     return JsonResponse(ctx)

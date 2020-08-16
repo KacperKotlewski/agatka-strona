@@ -51,9 +51,10 @@ function buildPage(mediaMaches, load_only=null, galleryOnClick = false){
                     "<div id='image_"+photos[j+(i*imagePerRow)].id.toString()+"' class='imgCanvas'><div class='imgContain'>";
 
                     if(galleryOnClick)
-                        res += "<div class='overlay pointer' onclick='fullscreenGroupGallery("+photos[j+(i*imagePerRow)].id.toString()+")'></div>";
+                        res += "<div class='overlay pointer' onclick='fullscreenGroupGallery(";
                     else
-                        res += "<div class='overlay pointer' onclick='fullscreenImage("+photos[j+(i*imagePerRow)].id.toString()+")'></div>";
+                        res += "<div class='overlay pointer' onclick='fullscreenImage(";
+                    res +=photos[j+(i*imagePerRow)].id.toString()+")'><div class='gallery_name'><span>"+photos[j+(i*imagePerRow)].name.toString()+"</span></div></div>";
                     res += "<div class='picFill' id='picture"+photos[j+(i*imagePerRow)].id.toString()+"' style='background-image: url(\"" + photos[j+(i*imagePerRow)].url + "\");'></div>"+
                     "</div></div></div></article>";
                 }
