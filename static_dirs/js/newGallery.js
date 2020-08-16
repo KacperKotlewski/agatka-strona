@@ -2,7 +2,7 @@
 
 var lastImgCount_Gallery = 0;
 var how_many_load_at_once_Gallery = 4
-
+var interval_loading_circle = null
 
 
 
@@ -34,6 +34,7 @@ function fullscreenGroupGallery(id){
         url: 'images_group_gallery',
         data: {'id' : id},
         success: function (data) {
+            console.log(data);
             $("#imageFullscreen").css({"display": "block"});
             if (data["fail"] == "No images"){
                 fullscreenImage(id)
@@ -53,9 +54,7 @@ function closeGallery(){
     $(item1).remove()
     $("#imageFullscreen").css({"display": "none"});
     $(item0).css({"visibility": "hidden"});
-    $(item0).find("#loadingCircle")[0].remove()
-    photoArrayGallery = []
-    lastImgCount_Gallery = 0
+    empty_loading_images()
 }
 
 
@@ -85,6 +84,7 @@ function ajaxGetImagesToGallery(id){
         data: data,
         success: function (data) {
             html = data.html
+            console.log(data);
             if((($(html).length +1)/2) < how_many_load_at_once_Gallery) {
                 empty_loading_images();
             }
@@ -103,6 +103,9 @@ function ajaxGetImagesToGallery(id){
 function empty_loading_images(){
     $("#imageContainer1 #loadingCircle").remove();
     //$("#loadingCircle").append("<span>Nie ma więcej zdjęć</span>");
+    clearInterval(interval_loading_circle);
+    photoArrayGallery = []
+    lastImgCount_Gallery = 0
 }
 
 function loading_images(id=null) {
@@ -120,5 +123,5 @@ function loading_images(id=null) {
     }
 }
 function startBuildingGallery(id=null){
-    setInterval(function(){loading_images(id)}, 500);
+    interval_loading_circle = setInterval(function(){loading_images(id)}, 500);
 }

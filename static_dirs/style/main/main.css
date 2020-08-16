@@ -48,10 +48,6 @@ html, body {
   background-color: white;
 }
 
-#container {
-  overflow: hidden;
-}
-
 #main {
   position: relative;
   overflow: hidden;
@@ -60,24 +56,19 @@ html, body {
   display: grid;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
-  -ms-grid-rows: minmax(50vh, auto) auto;
-      grid-template-rows: minmax(50vh, auto) auto;
-  -ms-grid-rows: minmax(85vh, auto) auto;
-      grid-template-rows: minmax(85vh, auto) auto;
+  -ms-grid-rows: 85vh auto;
+      grid-template-rows: 85vh auto;
 }
 
 @media (max-width: 750px), (orientation: portrait) {
   #main {
-    -ms-grid-rows: minmax(50vh, auto) auto;
-        grid-template-rows: minmax(50vh, auto) auto;
+    -ms-grid-rows: 90vh auto;
+        grid-template-rows: 90vh auto;
   }
 }
 
-@media (max-width: 750px), (orientation: portrait) {
-  #main {
-    -ms-grid-rows: minmax(90vh, auto) auto;
-        grid-template-rows: minmax(90vh, auto) auto;
-  }
+#main #container {
+  overflow-y: scroll;
 }
 
 #main footer {

@@ -18,9 +18,6 @@ html, body{
 .notTransparentMenu{
     background-color: rgba($menuBgColor, 1);
 }
-#container{
-  overflow: hidden;
-}
 
 #main{
     position: relative;
@@ -28,13 +25,12 @@ html, body{
     width: $width;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(50vh, auto) auto;
+    grid-template-rows: (100vh - ($menuSize)) auto;
     @media (max-width : 750px), (orientation: portrait){
-      grid-template-rows: minmax(50vh, auto) auto;
+      grid-template-rows: (100vh - ($portraitSize)) auto;
     }
-    grid-template-rows: minmax((100vh - ($menuSize)), auto) auto;
-    @media (max-width : 750px), (orientation: portrait){
-      grid-template-rows: minmax((100vh - ($portraitSize)), auto) auto;
+    #container{
+      overflow-y: scroll;
     }
 
     footer{
