@@ -7,8 +7,6 @@ function fullscreenImage(id){
     $("#imageFullscreen").css({"display": "block"});
     var item1 = $("#imageFullscreen").find("#imgGrids")[ 0 ];
     var item2 = $(item1).find("#imageContainer2")[0];
-    console.log($("#imageFullscreen #imgGrids #imageContainer2"));
-    console.log(item2);
     $(item1).css({"visibility": "visible"})
 }
 function closeImage(){
@@ -37,7 +35,6 @@ function fullscreenGroupGallery(id){
                 $(item2).append(data.html)
                 $(item1).css({"visibility": "visible"})
                 var img = $(item2).find(".image")
-                console.log(img);
             }
         }
     });
@@ -47,6 +44,8 @@ function closeGallery(){
     var item1 = $(item0).find("#imgGallery")[0]
     $(item1).remove()
     $("#imageFullscreen").css({"display": "none"});
+    console.log($(item0));
+    $(item0).css({"visibility": "hidden"});
 }
 
 
