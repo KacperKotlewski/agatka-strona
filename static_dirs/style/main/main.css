@@ -68,7 +68,7 @@ html, body {
 }
 
 #main #container {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #main footer {
@@ -212,24 +212,85 @@ body::-webkit-scrollbar-thumb {
   display: none;
 }
 
+#imageFullscreen .darkMode {
+  -webkit-text-stroke: 3px white;
+}
+
+#imageFullscreen .lightMode {
+  -webkit-text-stroke: 3px black;
+}
+
 #imageFullscreen #imgGrids {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 12;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 100vh;
+  width: 100vw;
+}
+
+#imageFullscreen #imgGrids .grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 6fr 1fr;
+      grid-template-columns: 1fr 6fr 1fr;
+  -ms-grid-rows: 1fr 6fr 1fr;
+      grid-template-rows: 1fr 6fr 1fr;
+  grid-gap: 2vh;
+  padding-top: 2vh;
 }
 
 #imageFullscreen #imgGrids #imageContainer2 {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1/3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   z-index: 13;
 }
 
+#imageFullscreen #imgGrids #imageContainer3 {
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  padding: 0px 1vw;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3/4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 1vw;
+}
+
+#imageFullscreen #imgGrids .galleryPreviewButton {
+  position: fixed;
+  top: calc(40% - 0.5em);
+  font-size: 4em;
+  cursor: pointer;
+  z-index: 20;
+}
+
+#imageFullscreen #imgGrids .galleryPreviewButton#prev_img {
+  left: 2vw;
+}
+
+#imageFullscreen #imgGrids .galleryPreviewButton#next_img {
+  right: 2vw;
+}
+
 #imageFullscreen #galleryGrid {
   position: absolute;
-  height: 100%;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 #imageFullscreen #galleryGrid #imageContainer1 {
@@ -309,5 +370,15 @@ div#loadingCircle i {
 
 div#loadingCircle span {
   font-size: 2em;
+}
+
+.square {
+  height: 100%;
+}
+
+.square:after {
+  content: "";
+  display: block;
+  padding-left: 100%;
 }
 /*# sourceMappingURL=main.css.map */

@@ -11,11 +11,14 @@ function fullscreenImage(id){
     //$("#picture"+id).css({'position': 'absolute', 'z-index': '50'});
     //$("#image_"+id+ " .picFill").css({'position': 'absolute', 'z-index': '50'});
     //$("#picture"+id).css({'position': 'fixed', 'z-index': '50', "top":"0", "left":"0"});
-    $("#imageFullscreen #imgGrids #imageContainer2").css({"background-image": ( $("#picture"+id).css("background-image") )});
+    $("#imageFullscreen #imgGrids #imageContainer2").css("background-image", $("#picture"+id).css("background-image"));
     $("#imageFullscreen").css({"display": "block"});
     var item1 = $("#imageFullscreen").find("#imgGrids")[ 0 ];
     var item2 = $(item1).find("#imageContainer2")[0];
+    var item3 = $(item1).find("#image_id")[0];
+    $(item3).val(id)
     $(item1).css({"visibility": "visible"})
+    AddImageBar(id)
 }
 function closeImage(){
     var item = $("#imageFullscreen").find("#galleryGrid")[ 0 ];
@@ -23,7 +26,82 @@ function closeImage(){
         $("#imageFullscreen").css({"display": "none"});
     var item1 = $("#imageFullscreen").find("#imgGrids")[ 0 ];
     $(item1).css({"visibility": "hidden"})
+    $($("#imageFullscreen #imgGrids #imageContainer3")[0]).empty()
 }
+
+
+function AddImageBar(id, count=6, dont_take_base_id=true){
+    $($("#imageFullscreen #imgGrids #imageContainer3")[0]).empty()
+    start_id = GetNextImageId(id, next=false, move_by=parseInt((count/2)))
+    createImageBar = function(img_id) {
+        return '<div> <div class="square image autofill hoverZoom1x25 hoverGreyout" id="img_gal_obj">'+
+                '<div id="image_'+img_id+'" class="imgCanvas">'+
+                    '<div class="imgContain">'+
+                        '<div class="overlay pointer" onclick="fullscreenImage('+img_id+')"></div>' +
+                        '<div class="picFill" id="picture'+img_id+'">'+
+            '</div></div></div></div></div>';
+    }
+    let id_to_add = start_id
+    let img_con = ($("#imageFullscreen #imgGrids #imageContainer3")[0]);
+    for (let index = 0; index < count; index++) {
+        if (id_to_add == id && dont_take_base_id){
+            index-=1;
+        }
+        else{
+            image = $.parseHTML(createImageBar(id_to_add));
+            $($(image).find(".picFill")[0]).css("background-image", $("#picture"+id_to_add).css("background-image")); //style="background-image: '+( $("#picture"+img_id).css("background-image") )+';"
+            $(img_con).append($(image));
+        }
+        id_to_add = GetNextImageId(id_to_add)
+    }
+}
+
+function GetNextImageId(id, next=true, move_by=1){
+    gallery = $("#galleryGrid #imgGallery")[0];
+    i = 0
+    totalCount = $(gallery).find(".picFill").length
+    var newPic
+    $(gallery).children().each(function () {
+        if (typeof($(this).find("#picture"+id)[0]) != "undefined"){
+            which_image = 0
+            if (next){
+                if (i>totalCount-1-move_by)
+                    which_image = -(1-move_by)
+                else
+                    which_image = i-(-move_by)
+            }
+            else{
+                if (i<-(0-move_by))
+                    which_image = totalCount-move_by
+                else
+                    which_image = i-move_by
+            }
+            
+            newPic = 0-(-($(gallery).find(".picFill")[which_image].id).slice(7))
+            return true;
+        }
+        i++;
+    });
+    return newPic
+}
+
+function NextImageInGallery(next=true){
+    id = 0-(-$("#imgGrids #image_id")[0].value)
+    closeImage()
+    fullscreenImage( GetNextImageId(id, next) )
+}
+
+$(document).ready(function() {
+    $("#imageContainer2").on('touchend',function(){
+         let dir = isSwipeingObject("#imageContainer2");
+         if(dir == "left"){
+            NextImageInGallery(next=true)
+         }
+         else if(dir == "right"){
+            NextImageInGallery(next=false)
+         }
+     });
+ });
 
 
 
@@ -34,7 +112,6 @@ function fullscreenGroupGallery(id){
         url: 'images_group_gallery',
         data: {'id' : id},
         success: function (data) {
-            console.log(data);
             $("#imageFullscreen").css({"display": "block"});
             if (data["fail"] == "No images"){
                 fullscreenImage(id)
@@ -50,11 +127,11 @@ function fullscreenGroupGallery(id){
 }
 function closeGallery(){
     var item0 = $("#imageFullscreen").find("#galleryGrid")[ 0 ];
-    var item1 = $(item0).find("#imgGallery")[0]
-    $(item1).remove()
+    empty_loading_images()
+    var item1 = $(item0).find("#imageContainer1")[0]
+    $(item1).empty()
     $("#imageFullscreen").css({"display": "none"});
     $(item0).css({"visibility": "hidden"});
-    empty_loading_images()
 }
 
 
@@ -70,7 +147,6 @@ function closeFullscreen(){
 
 
 function ajaxGetImagesToGallery(id){
-    var image_before_ajax = lastImgCount_Gallery
     let count = lastImgCount_Gallery -(-how_many_load_at_once_Gallery);
 
     data = {'count' : how_many_load_at_once_Gallery, "start_at" : lastImgCount_Gallery};
@@ -84,7 +160,6 @@ function ajaxGetImagesToGallery(id){
         data: data,
         success: function (data) {
             html = data.html
-            console.log(data);
             if((($(html).length +1)/2) < how_many_load_at_once_Gallery) {
                 empty_loading_images();
             }
@@ -123,5 +198,5 @@ function loading_images(id=null) {
     }
 }
 function startBuildingGallery(id=null){
-    interval_loading_circle = setInterval(function(){loading_images(id)}, 500);
+    interval_loading_circle = setInterval(function(){loading_images(id)}, 1000);
 }

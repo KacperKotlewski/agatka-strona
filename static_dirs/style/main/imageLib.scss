@@ -73,8 +73,14 @@ div.image {
             transition: all .5s;
             background-size: cover;
         }
+        .imgContain .picFull{
+            height: 100%;
+            width: 100%;
+            transition: all .5s;
+            background-size: contain;
+        }
 
-        .imgContain .picFill:before{
+        .imgContain .picFill:before, .imgContain .picFull:before{
             content: "";
             display: none;
             height: 100%;

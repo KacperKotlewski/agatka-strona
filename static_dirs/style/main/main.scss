@@ -30,7 +30,7 @@ html, body{
       grid-template-rows: (100vh - ($portraitSize)) auto;
     }
     #container{
-      overflow-y: scroll;
+      overflow-y: auto;
     }
 
     footer{
@@ -146,25 +146,69 @@ outline:none;
   height: 100%;
   z-index: 11;
   display: none;
+  .darkMode{
+    -webkit-text-stroke: 3px rgb(255, 255, 255);
+  }
+  .lightMode{
+    -webkit-text-stroke: 3px rgb(0, 0, 0);
+  }
 
   #imgGrids{
     position: fixed;
     top:0;
     left:0;
     z-index: 12;
-    background-color: rgba($menuBgColor, 0.2);
+    background-color: rgba($menuBgColor, 0.4);
+    height: 100vh;
+    width: 100vw;
+    .grid{
+      display: grid;
+      grid-template-columns: 1fr 6fr 1fr;
+      grid-template-rows: 1fr 6fr 1fr;
+      grid-gap: 2vh;
+      padding-top: 2vh;
+    }
     #imageContainer2{
+      grid-row: 1/3;
+      grid-column: 2/3;
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
       z-index: 13;
+    }
+    #imageContainer3{
+      $gap_between : 5vw;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      @media (max-width : 750px), (orientation: portrait){
+        $gap_between : 1vw;
+      }
+      padding: 0px $gap_between;
+      grid-row: 3/4;
+      grid-column: 1/4;
+      display: grid;
+      grid-gap: $gap_between;
+    }
+    .galleryPreviewButton{
+      position: fixed;
+      top: calc(40% - 0.5em);
+      font-size: 4em;
+      cursor: pointer;
+      z-index: 20;
+      &#prev_img{
+        left: 2vw;
+      }
+      &#next_img{
+        right: 2vw;
+      }
     }
   }
   #galleryGrid{
     position: absolute;
     $gap : 2vw;
     $size :  calc((100vw)/4);
-    height: 100%;
+    height: 100vh;
+    overflow-y: auto;
     #imageContainer1{
       height: 100%;
       padding-left: $gap;
@@ -229,4 +273,14 @@ div#loadingCircle{
   span{
       font-size: 2em;
   }
+}
+
+.square {
+  height: 100%;
+}
+
+.square:after {
+  content: "";
+  display: block;
+  padding-left: 100%;
 }

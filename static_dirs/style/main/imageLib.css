@@ -133,7 +133,15 @@ div.image .imgCanvas .imgContain .picFill {
   background-size: cover;
 }
 
-div.image .imgCanvas .imgContain .picFill:before {
+div.image .imgCanvas .imgContain .picFull {
+  height: 100%;
+  width: 100%;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  background-size: contain;
+}
+
+div.image .imgCanvas .imgContain .picFill:before, div.image .imgCanvas .imgContain .picFull:before {
   content: "";
   display: none;
   height: 100%;

@@ -32,18 +32,6 @@
         <script src="{% static 'js/scrollTo.js' %}"></script>
         <script src="{% static 'js/swipe.js' %}"></script>
         <script src="{% static 'js/newGallery.js' %}"></script>
-
-        <!-- <link rel="stylesheet" type="text/css" href="style/main/main.css">
-        <link rel="stylesheet" type="text/css" href="style/main/imageLib.css">
-        <link rel="stylesheet" type="text/css" href="style/main/topMenu.css">
-        <link rel="stylesheet" type="text/css" href="style/main/lightMode.css">
-        <link rel="stylesheet" type="text/css" href="style/ajax/gallery.css">
-        <link rel="stylesheet" type="text/css" href="other/fontello/css/fontello.css">
-        <script src="js/darkmode.js"></script>
-        <script src="js/menuMobileButton.js"></script>
-        <script src="js/onresize.js"></script>
-        <script src="js/ajaxGalleryMenager.js"></script>
-        <script src="js/scrollTo.js"></script> -->
         
         {% block additional_include %}{% endblock %}
 
@@ -59,7 +47,13 @@
             </div>
             <div id="imgGrids" class="imgGrid">
                 <div class = "grid">
-                    <div id="imageContainer2" class="imageContainer"></div>
+                    <div id="imageContainer2" class="imageContainer">
+                        <div id="prev_img" class="galleryPreviewButton lightMode" onclick="NextImageInGallery(next=false)"><i class="fas fa-chevron-left"></i></div>
+                        <div id="next_img" class="galleryPreviewButton lightMode" onclick="NextImageInGallery()"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <div id="imageContainer3">
+                    </div>
+                    <input type="number" id="image_id" style="display: none;"/>
                 </div>
             </div>
             <div class="close lightMode" onclick="closeFullscreen()"><i class="fas fa-times"></i></div>
