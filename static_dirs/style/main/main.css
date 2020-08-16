@@ -245,7 +245,7 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
   padding-left: 2vw;
   padding-right: 2vw;
-  padding-top: 5.2vw;
+  padding-top: 6vh;
 }
 
 #imageFullscreen #galleryGrid #imageContainer1 #imgGallery {
@@ -261,7 +261,6 @@ body::-webkit-scrollbar-thumb {
   #imageFullscreen #galleryGrid #imageContainer1 #imgGallery {
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
-    padding-top: 14vw;
   }
 }
 
@@ -300,5 +299,24 @@ body::-webkit-scrollbar-thumb {
 #imageFullscreen #fullscreeen_container .imgGrid .grid .imageContainer {
   width: 100%;
   height: 100%;
+}
+
+div#loadingCircle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 3vw;
+}
+
+div#loadingCircle i {
+  font-size: 4em;
+  -webkit-animation: loadingRotation 1s infinite;
+}
+
+div#loadingCircle span {
+  font-size: 2em;
 }
 /*# sourceMappingURL=main.css.map */

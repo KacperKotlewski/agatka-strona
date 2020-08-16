@@ -85,16 +85,4 @@ section#imgGallery{
             }
         }
     }
-    div#loadingCircle{
-        display: flex;
-        justify-content: center;
-        padding-bottom: $imgGalleryPadding;
-        i{
-            font-size: 4em;
-            -webkit-animation: loadingRotation 1s infinite;
-        }
-        span{
-            font-size: 2em;
-        }
-    }
 }

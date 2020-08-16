@@ -1,5 +1,15 @@
 
-<section id="imgGallery">
+{% if id %}
+    <section id="imgGallery">
+        
+    </section>
+    <div id="loadingCircle"><i class="fas fa-spinner"></i></div>
+    <script>
+        startBuildingGallery(id={{id}});
+    </script>
+
+{% else %}
+
     {% load static %}
     {% for image in imgs %}
     <div>
@@ -15,4 +25,4 @@
         </div>
     </div>
     {% endfor %}
-</section>
+{% endif %}

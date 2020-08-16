@@ -1,3 +1,11 @@
+
+
+var lastImgCount_Gallery = 0;
+var how_many_load_at_once_Gallery = 4
+
+
+
+
 function fullscreenImage(id){
     //$("#image_"+id+ " .overlay").css('visibility', 'hidden');
     //$("#picture"+id).css({'position': 'absolute', 'z-index': '50'});
@@ -14,7 +22,7 @@ function closeImage(){
     if($(item).css("visibility") == "hidden")
         $("#imageFullscreen").css({"display": "none"});
     var item1 = $("#imageFullscreen").find("#imgGrids")[ 0 ];
-    console.log($(item1).css({"visibility": "hidden"}))
+    $(item1).css({"visibility": "hidden"})
 }
 
 
@@ -44,8 +52,10 @@ function closeGallery(){
     var item1 = $(item0).find("#imgGallery")[0]
     $(item1).remove()
     $("#imageFullscreen").css({"display": "none"});
-    console.log($(item0));
     $(item0).css({"visibility": "hidden"});
+    $(item0).find("#loadingCircle")[0].remove()
+    photoArrayGallery = []
+    lastImgCount_Gallery = 0
 }
 
 
@@ -56,4 +66,59 @@ function closeFullscreen(){
     }else{
         closeGallery()
     }
+}
+
+
+
+function ajaxGetImagesToGallery(id){
+    var image_before_ajax = lastImgCount_Gallery
+    let count = lastImgCount_Gallery -(-how_many_load_at_once_Gallery);
+
+    data = {'count' : how_many_load_at_once_Gallery, "start_at" : lastImgCount_Gallery};
+    lastImgCount_Gallery = count;
+
+    if(id != null)
+        data['id'] = id;
+    $.ajax({
+        type: 'GET',
+        url: 'images_group_gallery',
+        data: data,
+        success: function (data) {
+            html = data.html
+            if((($(html).length +1)/2) < how_many_load_at_once_Gallery) {
+                empty_loading_images();
+            }
+            $("#imageContainer1 #imgGallery").append(html)
+        }
+    });    
+}
+
+
+
+
+
+
+
+
+function empty_loading_images(){
+    $("#imageContainer1 #loadingCircle").remove();
+    //$("#loadingCircle").append("<span>Nie ma więcej zdjęć</span>");
+}
+
+function loading_images(id=null) {
+    var load = document.querySelector("#imageContainer1 #loadingCircle i");
+    if (load != null){
+        var bounding = load.getBoundingClientRect();
+        if (
+            bounding.top >= 0 &&
+            bounding.left >= 0 &&
+            bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
+            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+        ) {
+            ajaxGetImagesToGallery(id);
+        }
+    }
+}
+function startBuildingGallery(id=null){
+    setInterval(function(){loading_images(id)}, 500);
 }

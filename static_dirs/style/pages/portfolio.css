@@ -169,23 +169,4 @@ section#imgGallery div#images div.imgRow {
         grid-template-columns: 1fr 1fr;
   }
 }
-
-section#imgGallery div#loadingCircle {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-bottom: 3vw;
-}
-
-section#imgGallery div#loadingCircle i {
-  font-size: 4em;
-  -webkit-animation: loadingRotation 1s infinite;
-}
-
-section#imgGallery div#loadingCircle span {
-  font-size: 2em;
-}
 /*# sourceMappingURL=portfolio.css.map */

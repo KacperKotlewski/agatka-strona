@@ -28,7 +28,7 @@ function ajaxGetImages(cat=null){
 }
 
 function empty_loading(){
-    $("#loadingCircle").remove();
+    $("#container #loadingCircle").remove();
     //$("#loadingCircle").append("<span>Nie ma więcej zdjęć</span>");
 }
 
@@ -67,7 +67,7 @@ function buildPage(mediaMaches, load_only=null, galleryOnClick = false){
 
 
 function loading(cat=null) {
-    var load = document.querySelector("#loadingCircle i");
+    var load = document.querySelector("#container #loadingCircle i");
     if (load != null){
         var bounding = load.getBoundingClientRect();
         if (

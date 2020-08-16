@@ -9,21 +9,29 @@ def Images(request, image, category="none", group="none"):
     ctx = {"img":img.image.url}
     return JsonResponse(ctx)
 
-def GetGroupGallery(request):
-    ctx={"imgs":[]}
-    if request.method == 'GET' and 'group':
+def GetGroupGallery(request):    
+    ctx={}
+    if request.method == 'GET' and 'id':
         group = models.Group.objects.get(id=request.GET["id"])
+        count = int(request.GET["count"]) if request.method == 'GET' and 'count' in request.GET else None
+        start_at = int(request.GET["start_at"]) if request.method == 'GET' and 'start_at' in request.GET else None
 
         imgs = models.Image.objects.filter(group=group)
         images = []
-        for i in imgs:
-            images.append({"id":i.id,"url":i.image.url})
+        if count != None and start_at != None:
+            for i in [i+start_at for i in range(count)]:
+                try:
+                    img = imgs[i]
+                    images.append({"id":img.id,"url":img.image.url})
+                except IndexError:
+                    break
+            ctx = {"imgs":images}
 
-
-        ctx = {"imgs":images}
-
-    if(len(ctx["imgs"]) == 0):
+    if not "imgs" in ctx:
+        ctx = {"id":request.GET["id"]}
+    if(len(imgs) == 0):
         return JsonResponse({"fail":"No images"})
+
     template_link ="images.html"
     template = get_template(template_link )
     content = template.render(ctx)

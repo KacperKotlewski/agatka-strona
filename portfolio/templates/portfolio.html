@@ -9,25 +9,6 @@
 {% block content %}
     <div id="container">
         <section id="galleries">
-            <!-- <?php 
-                $galleryPhotos = array(
-                    "event" => array("event.jpg", "ewenty", "events"), 
-                    "party" => array("party.jpg", "imprezy<br>okolicznościowe", "occasional-parties"), 
-                    "portrait" => array("portrait.jpg", "portrety", "portraits")
-                );
-                foreach ($galleryPhotos as $key => $value) {
-                    echo "<article id='gallery_$key' class='photoGalleryMiniature'>
-                    <div class='image autofill hoverZoom1x5 hoverblur'>
-                    <div class='imgCanvas'><div class='imgContain'>
-                    <div class='overlay'>
-                    <a href='$value[2]'>
-                    <div class='title'>
-                    <span>".mb_strtoupper($value[1])."</span>
-                    </div></a></div>
-                    <div class='picFill' style='background-image: url(\"pic/".$value[0]."\");'></div>
-                    </div></div></div></article>";
-                }
-            ?> -->
             {% for cat in subcat %}
                 <article id='gallery' class='photoGalleryMiniature'>
                 <div class='image autofill hoverZoom1x5 hoverblur'>

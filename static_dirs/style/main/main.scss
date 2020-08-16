@@ -173,7 +173,7 @@ outline:none;
       height: 100%;
       padding-left: $gap;
       padding-right: $gap;
-      padding-top: $gap * 2.6;
+      padding-top: 6vh;
       #imgGallery{
         width: 100%;
         display: grid;
@@ -181,7 +181,6 @@ outline:none;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         @media (max-width : 750px), (orientation: portrait){
           grid-template-columns: 1fr 1fr;
-          padding-top: $gap * 7;
         }
         div{
           height: $size;
@@ -221,4 +220,17 @@ outline:none;
     }
   }
   
+}
+
+div#loadingCircle{
+  display: flex;
+  justify-content: center;
+  padding-bottom: $imgGalleryPadding;
+  i{
+      font-size: 4em;
+      -webkit-animation: loadingRotation 1s infinite;
+  }
+  span{
+      font-size: 2em;
+  }
 }
