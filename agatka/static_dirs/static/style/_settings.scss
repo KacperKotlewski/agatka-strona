@@ -1,0 +1,55 @@
+//main
+$scrollSize: 0vw !default;
+$width: (100vw -$scrollSize) !default;
+$spaceBetweenButtons: 50px !default;
+$menuBgColor: #fff !default;
+$textColor: #333 !default;
+$menuTextColor: #999 !default;
+$menuSize: 15vh !default;
+$portraitSize: 10vh !default;
+$logoMargin: 10% !default;
+
+$darkmenuBgColor: #333 !default;
+$darktextColor: #ddd !default;
+$darkmenuTextColor: #999 !default;
+
+//home
+$paddingBtnFromSlider: 2% !default;
+
+//portfolio
+$imgGalleryPadding: 3vw;
+
+@function vh($quantity) {
+    @return calc(var(--vh, 1vh) * #{$quantity});
+    }
+
+
+@-webkit-keyframes loadingRotation {
+    0% {
+            -webkit-transform: rotate(0deg);
+    }
+    12.5% {
+            -webkit-transform: rotate(45deg);
+    }
+    25% {
+            -webkit-transform: rotate(90deg);
+    }
+    37.5% {
+            -webkit-transform: rotate(135deg);
+    }
+    50% {
+            -webkit-transform: rotate(180deg);
+    }
+    62.5% {
+            -webkit-transform: rotate(225deg);
+    }
+    75% {
+            -webkit-transform: rotate(270deg);
+    }
+    87.5% {
+            -webkit-transform: rotate(315deg);
+    }
+    100% {
+            -webkit-transform: rotate(359deg);
+    }
+}

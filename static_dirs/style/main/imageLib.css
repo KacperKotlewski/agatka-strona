@@ -199,6 +199,18 @@ div.image .imgCanvas .imgContain .overlay div.gallery_name {
   opacity: 0;
 }
 
+@media (max-width: 1500px) {
+  div.image .imgCanvas .imgContain .overlay div.gallery_name {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 750px), (orientation: portrait) {
+  div.image .imgCanvas .imgContain .overlay div.gallery_name {
+    font-size: 1.5em;
+  }
+}
+
 div.image .imgCanvas .imgContain .overlay div.gallery_name span {
   text-align: center;
 }

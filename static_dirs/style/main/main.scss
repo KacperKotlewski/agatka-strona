@@ -175,6 +175,16 @@ outline:none;
       background-repeat: no-repeat;
       background-size: contain;
       z-index: 13;
+      transition: all .2s;
+      
+      // position: absolute;
+      // &:hover {
+      //   height: 90vh;
+      //   width: 90vw;
+      //   top:5vh;
+      //   left:5vw;
+      //   right:5vw;
+      // }
     }
     #imageContainer3{
       $gap_between : 10vw;

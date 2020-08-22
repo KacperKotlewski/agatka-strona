@@ -6,9 +6,10 @@ from django.contrib import messages
 from agatka.useful import *
 from images import models as images_models
 
-def Homepage(request):
+def Homepage(request, category=None, group=None, image=None):
     ctx = set_navname("homepage", base_context(request))
     # messages.info(request, 'Your password has been changed successfully!')
+    ctx.update({"group":group, "image":image})
     return render(request, "home.html", ctx)
 
 def SetDarkMode(request):

@@ -2,19 +2,22 @@
 
 <!-- {% block title %}{{ section.title }}{% endblock %} -->
 
+{% load static %}
+
+
 {% block additional_include %}
-    {% load static %}
     <link rel="stylesheet" href="{% static 'style/pages/portfolio.css' %}">
 {% endblock %}
 {% block content %}
     <div id="container">
+        {% if subcat %}
         <section id="galleries">
             {% for cat in subcat %}
                 <article id='gallery' class='photoGalleryMiniature'>
                 <div class='image autofill hoverZoom1x5 hoverblur'>
                 <div class='imgCanvas'><div class='imgContain'>
                 <div class='overlay'>
-                <a href='portfolio/{{cat.friendly_link}}'>
+                <a href='portfolio/cat_{{cat.friendly_link}}'>
                 <div class='title'>
                 <span>{{cat.visible_name|upper}}</span>
                 </div></a></div>
@@ -22,13 +25,15 @@
                 </div></div></div></article>
             {% endfor %}
         </section>
+        {% endif %}
         <section id='imgGallery'>
             <div id="images"></div>
             <div id="loadingCircle"><i class="fas fa-spinner"></i></div>
         </section>
         <script src="{% static 'js/portfolioPageBuild.js' %}"></script>
         <script>
-            startBuildingPage();
+            startBuildingPage({% if category %}"{{category}}"{% endif %});
+            checkOnLoadGallery({% if group %}group={{group}}{% endif %}{% if image %}, image={{image}}{% endif %})
         </script>
     </div>
 {% endblock %}

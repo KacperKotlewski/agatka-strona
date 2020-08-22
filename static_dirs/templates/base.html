@@ -33,6 +33,12 @@
         <script src="{% static 'js/swipe.js' %}"></script>
         <script src="{% static 'js/newGallery.js' %}"></script>
         
+        
+        {% block meta_image %}
+        <meta property="og:image" content="http://{{ request.get_host }}{{logo.image_for_logo.url}}">
+        <meta name="twitter:image" content="http://{{ request.get_host }}{{logo.image_for_logo.url}}">
+        {% endblock %}
+        
         {% block additional_include %}{% endblock %}
 
         <title>{{ title }}</title>

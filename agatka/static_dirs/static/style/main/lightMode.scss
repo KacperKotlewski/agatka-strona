@@ -1,0 +1,120 @@
+@import '../_settings';
+
+.lightMode{
+    color: $textColor;
+    background-color: rgba($menuBgColor, 1);
+    .outline{
+        color: $textColor;
+        -webkit-text-stroke: 1px #{$darktextColor};
+    }
+}
+.darkMode{
+    color: $darktextColor;
+    background-color: rgba($darkmenuBgColor, 1);
+    .outline{
+        color: $darktextColor;
+        -webkit-text-stroke: 1px #{$textColor};
+    }
+}
+
+.brightModeHoverButton{
+    .lightMode{
+        color: rgba($textColor, 0.7);
+        background-color: rgba($menuBgColor, 0.0);
+        .outline{
+            color: $textColor;
+            -webkit-text-stroke: 1px #{$darktextColor};
+        }
+        &:hover{
+            color: rgba($textColor, 1);
+        }
+    }
+    .darkMode{
+        color: rgba($darktextColor, 0.7);
+        background-color: rgba($darkmenuBgColor, 0.0);
+        .outline{
+            color: $darktextColor;
+            -webkit-text-stroke: 1px #{$textColor};
+        }
+        &:hover{
+            color: rgba($darktextColor, 1);
+        }
+    }
+}
+
+
+.lightModeMenu{
+    color: $menuTextColor;
+    background-color: rgba($menuBgColor, 1);
+    ul.submenu, #menuBar{
+        background-color: rgba($menuBgColor, 1);
+    }
+    a, i, div{
+        color: $menuTextColor;
+    }
+    input, .settingBtn, input#searchBtn, input.textInp{
+        color: $textColor;
+        background-color: rgba($menuBgColor, 1);
+        border:1px solid $textColor;
+
+        .settingBtn:hover, #searchBtn:hover{
+            background-color: ($menuTextColor*1.5);
+        }
+
+        .sliderRange{
+            background: $menuTextColor;
+            border:none;
+        }
+        .sliderRange::-webkit-slider-thumb,  .sliderRange::-moz-range-thumb{
+            background: $textColor;
+        }
+    }
+    .hovered{
+        color: $textColor;
+    }
+}
+.darkModeMenu{
+    color: $darkmenuTextColor;
+    background-color: rgba($darkmenuBgColor, 1);
+    ul.submenu, #menuBar{
+        background-color: rgba($darkmenuBgColor, 1);
+    }
+    a, i{
+        color: $darkmenuTextColor;
+    }
+    input, .settingBtn, input#searchBtn, input.textInp, input.sliderRange{
+        .sliderRange{
+            background: $darkmenuTextColor;
+            border:none;
+        }
+        .sliderRange::-webkit-slider-thumb,  .sliderRange::-moz-range-thumb{
+            background: $darktextColor;
+        }
+        
+        color: $darktextColor;
+        background-color: rgba($darkmenuBgColor, 1);
+        border:1px solid $darktextColor;
+
+        .settingBtn:hover, #searchBtn:hover{
+            background-color: ($darkmenuTextColor*1.5);
+        }
+    }
+    
+    .hovered{
+        color: $darktextColor;
+    }
+}
+
+
+.lightModeMenu li:hover, .lightModeMenu div li:hover {
+    color: $textColor;
+    a, i{
+        color: $textColor;
+    }
+}
+.darkModeMenu li:hover, .darkModeMenu div li:hover {
+    color: $darktextColor;
+    a, i{
+        color: $darktextColor;
+    }
+}

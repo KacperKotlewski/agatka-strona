@@ -2,8 +2,8 @@
 
 <!-- {% block title %}{{ section.title }}{% endblock %} -->
 
+{% load static %}
 {% block additional_include %}
-    {% load static %}
     <link rel="stylesheet" href="{% static 'style/pages/home.css' %}">
 {% endblock %}
 {% block content %}
@@ -27,6 +27,7 @@
 
             <script src="{% static 'js/createCarousel.js' %}"></script>
             <script>
+                checkOnLoadGallery({% if group %}group={{group}}{% endif %}{% if image %}, image={{image}}{% endif %});
                 $('.carousel').carousel({
                     interval: 3000,
                 });

@@ -7,11 +7,11 @@ var interval_loading_circle = null
 
 
 function fullscreenImage(id){
-    //$("#image_"+id+ " .overlay").css('visibility', 'hidden');
-    //$("#picture"+id).css({'position': 'absolute', 'z-index': '50'});
-    //$("#image_"+id+ " .picFill").css({'position': 'absolute', 'z-index': '50'});
-    //$("#picture"+id).css({'position': 'fixed', 'z-index': '50', "top":"0", "left":"0"});
-    console.log(id);
+    AddToUrl(id);
+    ajax_show_image(id);
+}
+function ajax_show_image(id) {
+    
     $.ajax({
         type: 'GET',
         url: 'image',
@@ -99,7 +99,7 @@ function GetNextImageId(id, next=true, move_by=1){
 function NextImageInGallery(next=true){
     id = 0-(-$("#imgGrids #image_id")[0].value)
     closeImage()
-    fullscreenImage( GetNextImageId(id, next) )
+    ajax_show_image( GetNextImageId(id, next) )
 }
 
 $(document).ready(function() {
@@ -115,9 +115,11 @@ $(document).ready(function() {
  });
 
 
-
-
 function fullscreenGroupGallery(id){
+    AddToUrl(id);
+    ajax_show_group_gallery(id);
+}
+function ajax_show_group_gallery(id) {
     $.ajax({
         type: 'GET',
         url: 'images_group_gallery',
@@ -125,7 +127,7 @@ function fullscreenGroupGallery(id){
         success: function (data) {
             $("#imageFullscreen").css({"display": "block"});
             if (data["fail"] == "No images"){
-                fullscreenImage(id)
+                ajax_show_image(id)
             } else{
                 var item1 = $("#imageFullscreen").find("#galleryGrid")[ 0 ];
                 var item2 = $(item1).find("#imageContainer1")[0];
@@ -148,6 +150,7 @@ function closeGallery(){
 
 
 function closeFullscreen(){
+    BackOnceUrl()
     if($("#imageFullscreen #imgGrids").css("visibility") == "visible"){
         closeImage()
     }else{
@@ -203,4 +206,46 @@ function loading_images(id=null) {
 }
 function startBuildingGallery(id=null){
     interval_loading_circle = setInterval(function(){loading_images(id)}, 1000);
+}
+
+
+
+
+
+
+
+
+
+function checkOnLoadGallery(group=null, image=null){
+    console.log("group", group, " | image", image);
+    if(group != null){
+        ajax_show_group_gallery(group)
+    }
+    if(image != null){
+        ajax_show_image(image)
+    }
+
+}
+
+
+
+
+function AddToUrl(url_addition) {
+    url = window.location.href
+    new_url = url
+    if (url.indexOf("/portfolio") > -1 || url.indexOf("/home") > -1){
+        new_url =  url + "/" + url_addition
+    }else{
+        new_url =  url + "home/" + url_addition
+    }
+    console.log(url.indexOf("/portfolio"))
+    console.log(new_url)
+    window.history.replaceState(null, null, new_url);
+}
+function BackOnceUrl() {
+    url = window.location.href
+    url_len_to_cut = url.length - ("/"+url.split("/").slice(-1)[0]).length;
+    new_url =  url.substring(0, url_len_to_cut );
+    console.log(new_url);
+    window.history.replaceState(null, null, new_url);
 }

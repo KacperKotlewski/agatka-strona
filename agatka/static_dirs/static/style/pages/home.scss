@@ -1,0 +1,76 @@
+@import '../_settings';
+
+#main{
+
+    #pageContent{
+        height: (100vh - ($menuSize));
+        @media (max-width : 750px), (orientation: portrait){
+            height: (100vh - ($portraitSize));
+        }
+        width: $width;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row: 1/2;
+        grid-template-rows: 1fr 50vh;
+        overflow-y: visible;
+        #text{
+            width: $width;
+            grid-row: 1/2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        #carouselExampleIndicators{
+            grid-row: 1/3;
+        }
+    }
+}
+
+#carouselExampleIndicators{
+    .carousel-inner{
+        height: 100%;
+    }
+    .sliderPart{
+        height: 100%;
+        display: grid;
+        
+        @media (orientation: landscape) and (min-width:750px){
+            grid-template-columns: ($width*0.33333) ($width*0.33333) ($width*0.33333);
+        }
+        @media (orientation: portrait), (max-width : 750px){
+            grid-template-columns: ($width);
+        }
+    }
+    article{
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+.slideBtn{
+    width: ($paddingBtnFromSlider*2 +5%);
+    padding: ($paddingBtnFromSlider);
+    opacity: 1;
+}
+.carousel-control-next{
+    margin-right: -($paddingBtnFromSlider+1%);
+    background: linear-gradient(to left, rgba($textColor, $alpha: 0.7) 50%, rgba($textColor, $alpha: 0) 100%);
+}
+.carousel-control-prev{
+    margin-left: -($paddingBtnFromSlider+1%);
+    background: linear-gradient(to right, rgba($textColor, $alpha: 0.7) 50%, rgba($textColor, $alpha: 0) 100%);
+}
+
+.carousel-control-prev, .carousel-control-next{
+    padding-top:10%;
+    padding-bottom:10%;
+}
+@media (pointer: coarse), (pointer: none){
+
+    .carousel-control-prev, .carousel-control-next{
+        display: none;
+    }
+}
