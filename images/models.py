@@ -42,6 +42,8 @@ class Group(models.Model):
     def __str__(self):
         return "''"+self.visible_name + "'' z kategorii " +str(self.category)
     def save(self, *args, **kwargs):
+        self.visible_name = (self.visible_name).replace("\"", "''")
+        self.friendly_link = (self.friendly_link).replace("\"", "").replace("'", "")
         new_image = compress(self.background_image)
         self.reducted_image = new_image
         super().save(*args, **kwargs)

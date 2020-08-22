@@ -18,8 +18,7 @@ function ajax_show_image(id) {
         data: {'id' : id},
         success: function (data) {
             {
-                console.log(data);
-                $("#imageFullscreen #imgGrids #imageContainer2").css("background-image", "url('"+ data.img +"'");
+                $("#imageFullscreen #imgGrids #imageContainer2").css("background-image", "url(\""+ data.img +"\")");
                 $("#imageFullscreen").css({"display": "block"});
                 var item1 = $("#imageFullscreen").find("#imgGrids")[ 0 ];
                 var item2 = $(item1).find("#imageContainer2")[0];
@@ -217,7 +216,6 @@ function startBuildingGallery(id=null){
 
 
 function checkOnLoadGallery(group=null, image=null){
-    console.log("group", group, " | image", image);
     if(group != null){
         ajax_show_group_gallery(group)
     }
@@ -238,14 +236,11 @@ function AddToUrl(url_addition) {
     }else{
         new_url =  url + "home/" + url_addition
     }
-    console.log(url.indexOf("/portfolio"))
-    console.log(new_url)
     window.history.replaceState(null, null, new_url);
 }
 function BackOnceUrl() {
     url = window.location.href
     url_len_to_cut = url.length - ("/"+url.split("/").slice(-1)[0]).length;
     new_url =  url.substring(0, url_len_to_cut );
-    console.log(new_url);
     window.history.replaceState(null, null, new_url);
 }

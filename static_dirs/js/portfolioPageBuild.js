@@ -15,7 +15,6 @@ function ajaxGetImages(cat=null){
         url: '/images_from_groups',
         data: data,
         success: function (data) {
-            console.log(data);
             photoArrayPortfolio = photoArrayPortfolio.concat(data.grps);
             c = data.grps.length
             if(c == 0) {
