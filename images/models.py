@@ -1,5 +1,5 @@
 from django.db import models
-import os, uuid, PIL, io
+import os, uuid, io
 from django.core.files import File
 
 from django.dispatch import receiver
@@ -132,13 +132,18 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 
 
 def compress(image):
-    with PIL.Image.open(image) as im:
+    try:
+        import Image
+    except ImportError:
+        from PIL import Image
+
+    with Image.open(image) as im:
         size = im.size
         quality = 90
         if im.size[0] >=1200 or im.size[1] >=1200:
             size = (int(im.size[0]*0.5), int(im.size[1]*0.5))
         im_io = io.BytesIO() 
-        im.thumbnail(size, PIL.Image.ANTIALIAS)
+        im.thumbnail(size, Image.ANTIALIAS)
         while (int(im_io.tell()/1024) >= 80 or int(im_io.tell()) == 0):
             im_io = io.BytesIO()
             im.save(im_io, im.format, quality=quality) 
