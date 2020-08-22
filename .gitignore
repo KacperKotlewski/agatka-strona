@@ -7,6 +7,7 @@ db.sqlite3
 db*.sqlite3
 django_env
 media
+agatka/static_dirs
 .vs
 
 # Backup files # 
