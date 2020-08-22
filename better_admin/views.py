@@ -17,7 +17,7 @@ def Better_admin(request):
 def Login(request):
     return redirect('/admin/panel/login/?next=/admin/')
 
-def UpadteImages(request):
+def CompressAllImages(request):
     for i in imagesModels.Image.objects.all():
         try:
             i.save()
@@ -27,6 +27,22 @@ def UpadteImages(request):
             i.save()
         except: pass
     for i in imagesModels.Category.objects.all():
+        try:
+            i.save()
+        except: pass
+    return redirect('/admin/')
+
+def CompressImages(request):
+    from django.db.models import Q   
+    for i in imagesModels.Image.objects.filter(
+        Q(reducted_image='')|Q(reducted_image=None)
+    ):
+        try:
+            i.save()
+        except: pass
+    for i in imagesModels.Group.objects.filter(
+        Q(reducted_image='')|Q(reducted_image=None)
+    ):
         try:
             i.save()
         except: pass

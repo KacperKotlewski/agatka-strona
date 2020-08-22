@@ -15,13 +15,10 @@ class Category(models.Model):
     display_as_category = models.BooleanField(default=True)
     relase_date = models.DateTimeField()
     background_image = models.ImageField(_("background_image"), upload_to="pics/images", blank=True, null=True)
-    reducted_image = models.ImageField(_("reducted_image"), upload_to="pics/reducted_image", null=True, blank=True)
 
     def __str__(self):
         return "''"+self.visible_name+"''"
     def save(self, *args, **kwargs):
-        new_image = compress(self.background_image)
-        self.reducted_image = new_image
         super().save(*args, **kwargs)
 
 def get_upload_path_for_group(instance, filename):

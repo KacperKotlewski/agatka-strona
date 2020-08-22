@@ -10,7 +10,8 @@ urlpatterns = [
     path('add_images/get_groups/', views.GetGroups),
     path('add_images/new_group/', views.NewGroup),
     path('add_images/new_image/', views.NewImage),
-    path('image_update_all/', views.UpadteImages),
+    path('image_compress_all/', views.CompressAllImages),
+    path('image_compress/', views.CompressImages),
     path('panel/', admin.site.urls),
     path('login/', views.Login, name="login"),
 ]
