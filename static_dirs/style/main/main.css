@@ -235,8 +235,8 @@ body::-webkit-scrollbar-thumb {
   display: grid;
   -ms-grid-columns: 1fr 6fr 1fr;
       grid-template-columns: 1fr 6fr 1fr;
-  -ms-grid-rows: 1fr 6fr 1fr;
-      grid-template-rows: 1fr 6fr 1fr;
+  -ms-grid-rows: 1fr 6fr 15vh;
+      grid-template-rows: 1fr 6fr 15vh;
   grid-gap: 2vh;
   padding-top: 2vh;
 }
@@ -269,6 +269,36 @@ body::-webkit-scrollbar-thumb {
   display: -ms-grid;
   display: grid;
   grid-gap: 1vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#imageFullscreen #imgGrids #imageContainer3 .square2 {
+  width: 7vw;
+  height: 0px;
+  padding-top: 100%;
+  /* 1:1 Aspect Ratio */
+  position: relative;
+}
+
+@media (max-width: 1300px) {
+  #imageFullscreen #imgGrids #imageContainer3 .square2 {
+    width: 10vw;
+  }
+}
+
+@media (max-width: 800px), (orientation: portrait) {
+  #imageFullscreen #imgGrids #imageContainer3 .square2 {
+    width: 15vw;
+  }
 }
 
 #imageFullscreen #imgGrids .galleryPreviewButton {
@@ -370,15 +400,5 @@ div#loadingCircle i {
 
 div#loadingCircle span {
   font-size: 2em;
-}
-
-.square {
-  height: 100%;
-}
-
-.square:after {
-  content: "";
-  display: block;
-  padding-left: 100%;
 }
 /*# sourceMappingURL=main.css.map */

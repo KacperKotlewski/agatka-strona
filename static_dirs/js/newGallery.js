@@ -1,7 +1,7 @@
 
 
 var lastImgCount_Gallery = 0;
-var how_many_load_at_once_Gallery = 4
+var how_many_load_at_once_Gallery = 8
 var interval_loading_circle = null
 
 
@@ -45,7 +45,7 @@ function AddImageBar(id, count=6, dont_take_base_id=true){
     $($("#imageFullscreen #imgGrids #imageContainer3")[0]).empty()
     start_id = GetNextImageId(id, next=false, move_by=parseInt((count/2)))
     createImageBar = function(img_id) {
-        return '<div> <div class="square image autofill hoverZoom1x25 hoverGreyout" id="img_gal_obj">'+
+        return '<div class=""> <div class="square2 image autofill hoverZoom1x25 hoverGreyout" id="img_gal_obj">'+
                 '<div id="image_'+img_id+'" class="imgCanvas">'+
                     '<div class="imgContain">'+
                         '<div class="overlay pointer" onclick="fullscreenImage('+img_id+')"></div>' +
@@ -198,14 +198,7 @@ function loading_images(id=null) {
     var load = document.querySelector("#imageContainer1 #loadingCircle i");
     if (load != null){
         var bounding = load.getBoundingClientRect();
-        if (
-            bounding.top >= 0 &&
-            bounding.left >= 0 &&
-            bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
-            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-        ) {
-            ajaxGetImagesToGallery(id);
-        }
+        ajaxGetImagesToGallery(id);
     }
 }
 function startBuildingGallery(id=null){
