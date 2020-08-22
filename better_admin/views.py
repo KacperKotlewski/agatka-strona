@@ -17,7 +17,20 @@ def Better_admin(request):
 def Login(request):
     return redirect('/admin/panel/login/?next=/admin/')
 
-
+def UpadteImages(request):
+    for i in imagesModels.Image.objects.all():
+        try:
+            i.save()
+        except: pass
+    for i in imagesModels.Group.objects.all():
+        try:
+            i.save()
+        except: pass
+    for i in imagesModels.Category.objects.all():
+        try:
+            i.save()
+        except: pass
+    return redirect('/admin/')
 
 def AddImages(request):
     if not request.user.is_superuser:

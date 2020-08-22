@@ -10,6 +10,7 @@ function addToCarusel(item, index){
     var articles = "";
     var i = 0;
     item.forEach(pic => {
+        console.log(pic)
         articles += "<article id='article_"+i+"'><div class='image autofill hoverZoom1x25 hoverGreyout'>"+
         "<div class='imgCanvas'><div class='imgContain'>"+
         "<div class='overlay pointer' onclick='fullscreenGroupGallery("+pic.id+")'></div>"+

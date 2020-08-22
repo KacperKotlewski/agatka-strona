@@ -1,38 +1,6 @@
 @import "../settings";
 
 #content{
-    // height: calc(100vh - #{$menuSize} - calc(2*5vw));
-    // @media (min-width : 850px) and (orientation: landscape){
-    //     display: grid;
-    //     grid-template-columns: calc(calc(100vh - #{$menuSize} - calc(2*5vw))*0.666) 4fr calc(calc(100vh - #{$menuSize} - calc(2*5vw))*0.666) ;
-    //     grid-row: 1fr auto;
-    //     grid-gap: 5vw 5vw;
-    //     margin: 5vw 7vw;
-    //     grid-template-areas: 
-    //       "image text image"
-    //       "none buttons none"
-    // }
-    // @media (max-width : 850px), (orientation: portrait){
-    //     height: auto;
-    //     margin-left: calc(calc(100vw - calc(100vh - #{$menuSize})*0.666)/2);
-    //     display: grid;
-    //     grid-template-rows: calc(100vh - #{$menuSize}) auto auto calc(100vh - #{$menuSize});
-    //     grid-template-columns: calc(calc(100vh - #{$menuSize})*0.666);
-    //     grid-gap: 5vw;
-    //     grid-template-areas: 
-    //       "image"
-    //       "text"
-    //       "image";
-    // }
-    // @media (max-width : 750px), (orientation: portrait) {
-    //     margin-left: calc(calc(100vw - calc(100vw - #{$portraitSize})*0.666)/2);
-    //     grid-template-rows: calc(100vw - #{$portraitSize}) auto auto calc(100vw - #{$portraitSize});
-    //     grid-template-columns: calc(calc(100vw - #{$portraitSize})*0.666);
-    //     grid-template-areas: 
-    //       "image"
-    //       "text"
-    //       "image";
-    // }
     height: 100%;
     display: grid;
     grid-template-columns: calc(calc(100vh - #{$menuSize} - calc(2*5vw))*0.666) 4fr calc(calc(100vh - #{$menuSize} - calc(2*5vw))*0.666) ;

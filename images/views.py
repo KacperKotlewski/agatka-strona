@@ -6,7 +6,14 @@ import os
 
 def Images(request, image, category="none", group="none"):
     img = filterImages(image=image, category=category, group=group)[0]
-    ctx = {"img":img.image.url}
+    ctx = {"img":img.reducted_image.url}
+    return JsonResponse(ctx)
+
+def GetImage(request):
+    ctx = {}
+    if request.method == 'GET' and 'id':
+        img = models.Image.objects.get(id=request.GET["id"])
+        ctx = {"img":img.image.url}
     return JsonResponse(ctx)
 
 def GetGroupGallery(request):    
@@ -22,9 +29,9 @@ def GetGroupGallery(request):
             for i in [i+start_at for i in range(count)]:
                 try:
                     img = imgs[i]
-                    images.append({"id":img.id,"url":img.image.url})
-                except IndexError:
-                    break
+                    images.append({"id":img.id,"url":img.reducted_image.url})
+                except:
+                    continue
             ctx = {"imgs":images}
 
     if not "imgs" in ctx:
@@ -49,7 +56,10 @@ def GetImages(request):
         if len(imgs) <= i:
             break
         else:
-            images.append({"id":imgs[i].id,"url":imgs[i].image.url})
+            try:
+                images.append({"id":imgs[i].id,"url":imgs[i].reducted_image.url})
+            except:
+                continue
 
     ctx = {"imgs":images}
     return JsonResponse(ctx)
@@ -110,7 +120,10 @@ def GetGroups(request):
         if len(grps) <= i:
             break
         else:
-            groups.append({"id":grps[i].id,"url":grps[i].background_image.url,"name":grps[i].visible_name})
+            try:
+                groups.append({"id":grps[i].id,"url":grps[i].reducted_image.url,"name":grps[i].visible_name})
+            except:
+                continue
 
     ctx = {"grps":groups}
     return JsonResponse(ctx)

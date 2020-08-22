@@ -11,14 +11,25 @@ function fullscreenImage(id){
     //$("#picture"+id).css({'position': 'absolute', 'z-index': '50'});
     //$("#image_"+id+ " .picFill").css({'position': 'absolute', 'z-index': '50'});
     //$("#picture"+id).css({'position': 'fixed', 'z-index': '50', "top":"0", "left":"0"});
-    $("#imageFullscreen #imgGrids #imageContainer2").css("background-image", $("#picture"+id).css("background-image"));
-    $("#imageFullscreen").css({"display": "block"});
-    var item1 = $("#imageFullscreen").find("#imgGrids")[ 0 ];
-    var item2 = $(item1).find("#imageContainer2")[0];
-    var item3 = $(item1).find("#image_id")[0];
-    $(item3).val(id)
-    $(item1).css({"visibility": "visible"})
-    AddImageBar(id)
+    console.log(id);
+    $.ajax({
+        type: 'GET',
+        url: 'image',
+        data: {'id' : id},
+        success: function (data) {
+            {
+                console.log(data);
+                $("#imageFullscreen #imgGrids #imageContainer2").css("background-image", "url('"+ data.img +"'");
+                $("#imageFullscreen").css({"display": "block"});
+                var item1 = $("#imageFullscreen").find("#imgGrids")[ 0 ];
+                var item2 = $(item1).find("#imageContainer2")[0];
+                var item3 = $(item1).find("#image_id")[0];
+                $(item3).val(id)
+                $(item1).css({"visibility": "visible"})
+                AddImageBar(id)
+            }
+        }
+    });
 }
 function closeImage(){
     var item = $("#imageFullscreen").find("#galleryGrid")[ 0 ];

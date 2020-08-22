@@ -9,4 +9,5 @@ urlpatterns = [
     path('s_from_groups', views.GetGroups),
     path('s_group_gallery', views.GetGroupGallery),
     path('s', views.GetImages),
+    path('', views.GetImage),
 ]
