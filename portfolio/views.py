@@ -33,5 +33,5 @@ def __getSubactegories(category=None):
         cat = images_models.Category.objects.filter(friendly_link=category, display=True)[0]
         subcatTemp = images_models.Group.objects.filter(category=cat)
     else:
-        subcatTemp = images_models.Category.objects.filter(display_as_category=True, display=True)
+        subcatTemp = images_models.Category.objects.filter(display_as_category=True, display=True).order_by("position")
     return list(subcatTemp)
