@@ -32,29 +32,29 @@
   height: 100%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.666) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.666);
-      grid-template-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.666) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.666);
+  -ms-grid-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.888) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.888);
+      grid-template-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.888) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.888);
   -ms-grid-rows: 10fr auto;
       grid-template-rows: 10fr auto;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1660px) {
+  #content {
+    -ms-grid-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.666) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.666);
+        grid-template-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.666) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.666);
+  }
+}
+
+@media (max-width: 1440px) {
   #content {
     -ms-grid-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.444) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.444);
         grid-template-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.444) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.444);
   }
 }
 
-@media (max-width: 1000px) {
-  #content {
-    -ms-grid-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.333) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.333);
-        grid-template-columns: calc(calc(100vh - 15vh - calc(2*5vw))*0.333) 4fr calc(calc(100vh - 15vh - calc(2*5vw))*0.333);
-  }
-}
-
-@media (max-width: 750px), (orientation: portrait) {
+@media (max-width: 1200px), (orientation: portrait) {
   #content {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
@@ -81,7 +81,7 @@
           justify-content: center;
 }
 
-@media (max-width: 750px), (orientation: portrait) {
+@media (max-width: 1200px), (orientation: portrait) {
   .images {
     height: 75vh;
   }
@@ -96,7 +96,7 @@
   grid-column: 3/4;
 }
 
-@media (max-width: 750px), (orientation: portrait) {
+@media (max-width: 1200px), (orientation: portrait) {
   .images#image1 {
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
@@ -116,7 +116,7 @@
   grid-column: 1/2;
 }
 
-@media (max-width: 750px), (orientation: portrait) {
+@media (max-width: 1200px), (orientation: portrait) {
   .images#image2 {
     -ms-grid-row: 4;
     -ms-grid-row-span: 1;
@@ -143,7 +143,7 @@
   text-align: center;
 }
 
-@media (max-width: 750px), (orientation: portrait) {
+@media (max-width: 1200px), (orientation: portrait) {
   #aboutme {
     -ms-grid-row: 2;
     -ms-grid-row-span: 1;
@@ -167,6 +167,10 @@
   grid-row: 3/4;
 }
 
+#aboutme span p {
+  font-size: 1.4em;
+}
+
 #buttons {
   width: 100%;
   height: 0%;
@@ -179,7 +183,7 @@
   font-size: 3em;
 }
 
-@media (max-width: 750px), (orientation: portrait) {
+@media (max-width: 1200px), (orientation: portrait) {
   #buttons {
     -ms-grid-row: 3;
     -ms-grid-row-span: 1;
