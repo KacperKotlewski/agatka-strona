@@ -10,32 +10,40 @@
 
 {% load static %}
 <section id="pageContent">
-    <div class='image contain autofill imgCanvas imgContain'>
+    <div id="imageContainer" class='image contain autofill imgCanvas imgContain'>
         <div class="picFill" style='background-image: url({{settings.image.url}});'>
-            <div style="height: 100%;">
+        </div>
+    </div>
+
+    <div id="formContainer">
         <form id="messageForm" method="POST">
             {% csrf_token %}
             {{form.captcha}}
             <div class="halfOfForm">
                 {% for field in form %}
                     {% if field != form.message and field != form.captcha %}
-                    <div class="formSection">
-                        {{field.label_tag }}
+                    <div class="formSection lightMode">
+                        <div class="label">
+                            {{field.label_tag }}
+                        </div>
                         {{field}}
                     </div>
                     {% endif %}
                 {% endfor %}
             </div>
             <div class="halfOfForm" id="secHalfOfForm">
-                <div class="formSection">
-                    {{form.message.label_tag }}
+                <div class="formSection lightMode">
+                    <div class="label">
+                        {{form.message.label_tag }}
+                    </div>
                     {{form.message}}
+                    <p><input type="checkbox" required name="terms">
+                        Wyrażam zgodę na przetwarzanie moich danych osobowych w celu nawiązania kontaktu i przedstawienia oferty. Podane dane zostaną przesłane w formie mailowej i nie zostaną zapisane w żadnej bazie danych oraz nie zostaną wykorzystane do innych celów.
+                    </p>
                 </div> 
                 <input type="submit" id="submit" value="Wyślij wiadomość"/>
             </div>
         </form>
-            </div>
-        </div>
     </div>
 </section>
 {% endblock %}
