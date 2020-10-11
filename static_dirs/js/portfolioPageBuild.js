@@ -1,13 +1,11 @@
+const HOW_MANY_LOAD_AT_ONCE = 6
+
 var photoArrayPortfolio = []
 var lastImgCount = 0;
-var how_many_load_at_once = 6
+
+
 function ajaxGetImages(cat=null){
-    var image_before_ajax = photoArrayPortfolio.length
-    let count = photoArrayPortfolio.length -(-how_many_load_at_once);
-
-    data = {'count' : how_many_load_at_once, "start_at" : lastImgCount};
-    lastImgCount = count;
-
+    data = {}
     if(cat != null)
         data['category'] = cat;
     $.ajax({
@@ -16,14 +14,15 @@ function ajaxGetImages(cat=null){
         data: data,
         success: function (data) {
             photoArrayPortfolio = photoArrayPortfolio.concat(data.grps);
-            c = data.grps.length
-            if(c == 0) {
-                empty_loading();
-                c = null;
-            }
-            buildPage(mediaMaches, load_only=c, galleryOnClick=true);
         }
     });    
+}
+function delete_loading(){
+    c = lastImgCount + HOW_MANY_LOAD_AT_ONCE
+    if(c >= photoArrayPortfolio.length) {
+        empty_loading();
+        c = null;
+    }
 }
 
 function empty_loading(){
@@ -31,11 +30,13 @@ function empty_loading(){
     //$("#loadingCircle").append("<span>Nie ma więcej zdjęć</span>");
 }
 
-function buildPage(mediaMaches, load_only=null, galleryOnClick = false){
+function buildPage(mediaMaches, load_count=null, galleryOnClick = false){
     var photos  = photoArrayPortfolio;
-    if (load_only != null)
+    
+    if (load_count != null)
     {
-        photos = photos.slice(-load_only)
+        lastImgCount = load_count + HOW_MANY_LOAD_AT_ONCE
+        photos = photos.slice(load_count, lastImgCount)
       
         var imagePerRow = 3;
         if(mediaMaches) imagePerRow = 2;
@@ -76,10 +77,13 @@ function loading(cat=null) {
             bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
             bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
         ) {
-            ajaxGetImages(cat);
+            delete_loading()
+            buildPage(mediaMaches, load_count=lastImgCount, galleryOnClick=true)
         }
     }
 }
 function startBuildingPage(cat=null){
+    if (photoArrayPortfolio.length == 0)
+        ajaxGetImages(cat);
     setInterval(function(){loading(cat)}, 500);
 }
